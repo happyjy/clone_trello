@@ -1,0 +1,552 @@
+@charset "UTF-8";
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  color: #fff;
+}
+
+.container {
+  background-color: #cd5a91;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container .header_container {
+  height: 40px;
+  padding: 4px 8px 4px 8px;
+  background-color: #AF4C7B;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.container .header_container_left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .header_container_left .header_container_left_items {
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .header_container_left .header_container_left_items .header_container_left_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  max-width: 2rem;
+  max-height: 2rem;
+  border: 0;
+  background-color: #DA83AB;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.container .header_container_left_item:not(:last-child) {
+  margin-right: 5px;
+}
+
+.container .header_container_center {
+  position: relative;
+  padding: 10px;
+  width: 50px;
+}
+
+.container .header_container_center a.hcc_home_container .hcc_home {
+  height: 24px;
+  width: 24px;
+}
+
+.container .header_container_center a.hcc_home_container .hcc_home::before {
+  opacity: 0.5;
+  content: '';
+  background-image: url(https://a.trellocdn.com/prgb/dist/images/header-logo-spirit.d947df93bc055849898e.gif);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.container .header_container_right {
+  width: 40px;
+}
+
+.container .header_container_right_items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+}
+
+.container .header_container_right_items .profile_container {
+  width: 2rem;
+  height: 2rem;
+}
+
+.container .header_container_right_items .profile_container .profile_name {
+  /* 
+              ## ? 문자가 원 중앙이 맞지 않음 
+                * trello 참고해보자.
+            */
+  display: inline-block;
+  border-radius: 50%;
+  color: black;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: #DEE1E5;
+  font-weight: 600;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .header_container_right_items .profile_container .profile_name_text {
+  position: relative;
+  top: 3px;
+}
+
+.content_header_container {
+  padding: 8px 8px 4px 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.content_header_container .content_header_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 7px;
+  /* 
+      ## ? header_container_left_item 아이콘과 높이를 같게 하려면 어떻게 해야할까?
+    */
+  min-height: 2rem;
+  height: 34px;
+}
+
+.content_header_container .content_header_left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.content_header_container .content_header_left > * {
+  background-color: #DA83AB;
+}
+
+.content_header_container .content_header_left_item {
+  /* 
+        ## ? vertical-align: center;
+        글자 중앙 정렬 
+      */
+  border-radius: 3px;
+}
+
+.content_header_container .content_header_left_item:not(:last-child) {
+  /* 
+            ## ? last 빼고 margin-right 주기 
+              * 하위 selector 중이 아니라 
+              * 선택된 selector 중에서 last-child 적용됨.
+          */
+  margin-right: 5px;
+}
+
+.content_header_container .content_header_right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.content_header_container .content_header_right_item {
+  background-color: #DA83AB;
+  border-radius: 3px;
+}
+
+.content_header_container .content_header_right_item > span {
+  padding: 0 8px;
+}
+
+.content_header_container .content_header_right_item > span::before {
+  background: red;
+  /* ## ? before 포함하기 */
+  display: inline-block;
+  content: "\B7\B7\B7";
+  background-color: #DA83AB;
+  border-radius: 3px;
+  margin-right: 6px;
+}
+
+/* 
+  ## ? variables 설정하기
+*/
+/* 
+  ## ? index.css watch 컴파일 될때만 변경된다.
+*/
+/* 
+  ## ? 폰트가 전체적으로 위로 올라가서 이걸 해결해주려면 font 관련 내용을 찾아봐야겠다.
+*/
+.content_container {
+  padding: 4px 8px 8px 8px;
+}
+
+.content_container .content_container_items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.content_container .card_item {
+  display: block;
+  background-color: #F4F5F7;
+  width: 256px;
+  border-radius: 3px;
+  padding: 7px;
+  margin: 7px;
+  /*  
+      ## [point] relative로 정렬하기 글자가 span tag 안에 중앙으로 안와서 설정함
+        ## ? 어떤 영향인지 확인해야함(글꼴?)
+    */
+}
+
+.content_container .card_item_text {
+  position: relative;
+  top: 1px;
+}
+
+.content_container .content_container_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #DEE1E5;
+  color: #172b4d;
+  border-radius: 3px;
+  height: 100%;
+}
+
+.content_container .content_container_item .card_container .card_title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 13px 10px 0 15px;
+  font-weight: 600;
+}
+
+.content_container .content_container_item .card_container .card_title:after {
+  cursor: pointer;
+}
+
+.content_container .content_container_item .card_container .card_title:after:hover {
+  background-color: #D8D9DC;
+}
+
+.content_container .content_container_item .card_contents_container .card_item {
+  /* 
+          ## Beautiful CSS box-shadow example 
+            - [Beautiful CSS box-shadow example](https://getcssscan.com/css-box-shadow-examples)
+        */
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 1.5px 1.55px 2.6px;
+          box-shadow: rgba(0, 0, 0, 0.2) 1.5px 1.55px 2.6px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.content_container .content_container_item .card_contents_container .card_item:not(:last-child):hover {
+  background-color: #D8D9DC;
+  cursor: pointer;
+}
+
+.content_container .content_container_item .card_contents_container .card_item:not(:last-child):hover:after {
+  content: "";
+  width: 24px;
+  background: url(../images/pencil.svg);
+  /* ## [point] rem의 활용 1
+                * 문자와 같이 사용하는 icon에 size를 같게 하기위해서 1rem을 사용하면 같은 크기를 사용할 수 있다. */
+  background-size: 1rem 1rem;
+  background-repeat: no-repeat;
+}
+
+.content_container .content_container_item .card_contents_container .card_item:last-child {
+  display: block;
+  color: #5e6c84;
+  background-color: #DEE1E5;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.content_container .content_container_item .card_contents_container .card_item:last-child:before {
+  /* 
+              ## ? css entities 
+            */
+  content: "\002B";
+  background-color: inherit;
+  margin-right: 5px;
+}
+
+.content_container .content_container_item .content_addListBtn_title {
+  display: block;
+  color: #5e6c84;
+}
+
+.content_container .content_container_item .content_addListBtn_title:before {
+  /* 
+          ## ? css entities 
+        */
+  content: "\002B";
+  background-color: inherit;
+  width: inherit;
+}
+
+.content_container .content_container_item:not(:last-child) {
+  margin-right: 6px;
+}
+
+.content_container .content_addListBtn {
+  padding: 10px;
+  background-color: #DA83AB;
+  max-width: 264px;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  /* 
+      ## ? 반복되는 selector mixin 사용해서 재활용 해보기.
+    */
+}
+
+.content_container .content_addListBtn .content_addListBtn_title {
+  color: #fff;
+}
+
+.content_container .content_addListBtn .content_addListBtn_title:before {
+  /* 
+          ## ? css entities 
+        */
+  content: "\002B";
+}
+
+/* 
+  ## pencil 
+    * icon 사용하지 않고 "Pseudo-class"를 사용해서 icon 처럼 만들 수 있는것 사용
+    * dom을 붙여야 하므로 mouseover 했을때만 보이게 하려면 display: none을 사용해야 한다.
+
+*/
+.pencil {
+  width: 10px;
+  height: 50px;
+  background: dimgray;
+  position: relative;
+  -webkit-transform: rotate(30deg);
+          transform: rotate(30deg);
+}
+
+.pencil:before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: dimgray;
+  top: -13px;
+}
+
+.pencil:after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: dimgray;
+  left: 1px;
+  bottom: -4px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}

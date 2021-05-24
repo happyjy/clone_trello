@@ -1,0 +1,223 @@
+@charset "UTF-8";
+body {
+  color: #fff;
+}
+
+.container {
+  background-color: #cd5a91;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container .header_container {
+  height: 40px;
+  padding: 4px 8px 4px 8px;
+  background-color: #AF4C7B;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.container .header_container_left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .header_container_left .header_container_left_items {
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .header_container_left .header_container_left_items .header_container_left_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  max-width: 2rem;
+  max-height: 2rem;
+  border: 0;
+  background-color: #DA83AB;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.container .header_container_left_item:not(:last-child) {
+  margin-right: 5px;
+}
+
+.container .header_container_center {
+  position: relative;
+  padding: 10px;
+  width: 50px;
+}
+
+.container .header_container_center a.hcc_home_container .hcc_home {
+  height: 24px;
+  width: 24px;
+}
+
+.container .header_container_center a.hcc_home_container .hcc_home::before {
+  opacity: 0.5;
+  content: '';
+  background-image: url(https://a.trellocdn.com/prgb/dist/images/header-logo-spirit.d947df93bc055849898e.gif);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.container .header_container_right {
+  width: 40px;
+}
+
+.container .header_container_right_items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+}
+
+.container .header_container_right_items .profile_container {
+  width: 2rem;
+  height: 2rem;
+}
+
+.container .header_container_right_items .profile_container .profile_name {
+  /* 
+              ## ? 문자가 원 중앙이 맞지 않음 
+                * trello 참고해보자.
+            */
+  display: inline-block;
+  border-radius: 50%;
+  color: black;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: #DEE1E5;
+  font-weight: 600;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .header_container_right_items .profile_container .profile_name_text {
+  position: relative;
+  top: 3px;
+}
+
+.content_header_container {
+  padding: 8px 8px 4px 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.content_header_container .content_header_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 7px;
+  /* 
+      ## ? header_container_left_item 아이콘과 높이를 같게 하려면 어떻게 해야할까?
+    */
+  min-height: 2rem;
+  height: 34px;
+}
+
+.content_header_container .content_header_left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.content_header_container .content_header_left > * {
+  background-color: #DA83AB;
+}
+
+.content_header_container .content_header_left_item {
+  /* 
+        ## ? vertical-align: center;
+        글자 중앙 정렬 
+      */
+  border-radius: 3px;
+}
+
+.content_header_container .content_header_left_item:not(:last-child) {
+  /* 
+            ## ? last 빼고 margin-right 주기 
+              * 하위 selector 중이 아니라 
+              * 선택된 selector 중에서 last-child 적용됨.
+          */
+  margin-right: 5px;
+}
+
+.content_header_container .content_header_right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.content_header_container .content_header_right_item {
+  background-color: #DA83AB;
+  border-radius: 3px;
+}
+
+.content_header_container .content_header_right_item > span {
+  padding: 0 8px;
+}
+
+.content_header_container .content_header_right_item > span::before {
+  background: red;
+  /* ## ? before 포함하기 */
+  display: inline-block;
+  content: "\B7\B7\B7";
+  background-color: #DA83AB;
+  border-radius: 3px;
+  margin-right: 6px;
+}

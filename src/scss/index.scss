@@ -1,0 +1,235 @@
+@import './_variables';
+@import './_reset';
+@import './header';
+@import './contents';
+
+/* 
+  ## ? 폰트가 전체적으로 위로 올라가서 이걸 해결해주려면 font 관련 내용을 찾아봐야겠다.
+*/
+$bg: #cd5a91;
+$bg1: #DA83AB;
+$bg2: #AF4C7B;
+
+$cardBg: #DEE1E5;
+$cardBg1: #F4F5F7;
+$cardBg2: #D8D9DC;
+$cardBg3: #a5a5a5;
+
+$font: #fff;
+$font1: #172b4d;
+$font2: #5e6c84;
+
+.content_container {
+  padding: 4px 8px 8px 8px;
+  // border: 1px solid black;
+  // height: 100vh;
+
+  .content_container_items {
+    display: flex;
+  }
+
+  .card_item {
+
+    // border: 1px solid bisque;
+    display: block;
+    background-color: $cardBg1;
+    // background-color: red;
+    width: 256px;
+    border-radius: 3px;
+    padding: 7px;
+    margin: 7px;
+
+    /*  
+      ## [point] relative로 정렬하기 글자가 span tag 안에 중앙으로 안와서 설정함
+        ## ? 어떤 영향인지 확인해야함(글꼴?)
+    */
+    &_text {
+      position: relative;
+      top: 1px;
+    }
+  }
+
+  .content_container_item {
+    display: flex;
+    flex-direction: column;
+    // align-items: flex-start;
+    background-color: $cardBg;
+    color: $font1;
+    border-radius: 3px;
+    height: 100%;
+
+    .card_container {
+
+      .card_title {
+        display: flex;
+        justify-content: space-between;
+        padding: 13px 10px 0 15px;
+        font-weight: 600;
+
+        &:after {
+          // content: "\B7\B7\B7";  // * \B7: middle dot
+          cursor: pointer;
+
+          &:hover {
+            background-color: $cardBg2;
+          }
+        }
+      }
+    }
+
+    .card_contents_container {
+      &>* {
+        // background-color: $cardBg1;
+        // width: 256px;
+        // border-radius: 3px;
+        // padding: 7px;
+        // margin: 7px;
+      }
+
+      .card_item {
+
+        // border: 1px solid bisque;
+        // background-color: $cardBg1;
+        // width: 256px;
+        // border-radius: 3px;
+        // padding: 7px;
+        // margin: 7px;
+        /* 
+          ## Beautiful CSS box-shadow example 
+            - [Beautiful CSS box-shadow example](https://getcssscan.com/css-box-shadow-examples)
+        */
+        box-shadow: rgba(0, 0, 0, 0.2) 1.5px 1.55px 2.6px;
+
+        display: flex;
+        justify-content: space-between;
+
+
+        &:not(:last-child) {
+          &:hover {
+            background-color: $cardBg2;
+            cursor: pointer;
+
+            &:after {
+              content: "";
+              width: 24px;
+              background: url(../images/pencil.svg);
+              /* ## [point] rem의 활용 1
+                * 문자와 같이 사용하는 icon에 size를 같게 하기위해서 1rem을 사용하면 같은 크기를 사용할 수 있다. */
+              // background-color: $cardBg3;
+              background-size: 1rem 1rem;
+              background-repeat: no-repeat;
+            }
+          }
+        }
+
+        &:last-child {
+          // box-shadow: none;
+          display: block;
+          color: $font2;
+          background-color: $cardBg;
+          box-shadow: none;
+
+          &:before {
+            /* 
+              ## ? css entities 
+            */
+            // display: inline-block;
+            content: "\002B";
+            background-color: inherit;
+            margin-right: 5px;
+            // width: inherit;
+            // padding-right: 10px;
+          }
+        }
+      }
+
+    }
+
+    .content_addListBtn_title {
+      display: block;
+      color: $font2;
+
+      &:before {
+        /* 
+          ## ? css entities 
+        */
+        // display: inline-block;
+        content: "\002B";
+        background-color: inherit;
+        width: inherit;
+        // padding-right: 10px;
+      }
+    }
+
+
+    &:not(:last-child) {
+      margin-right: 6px;
+    }
+  }
+
+  .content_addListBtn {
+    padding: 10px;
+    background-color: $bg1;
+    // background-color: $cardBg;
+    max-width: 264px;
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+
+    /* 
+      ## ? 반복되는 selector mixin 사용해서 재활용 해보기.
+    */
+    .content_addListBtn_title {
+      color: $font;
+
+      &:before {
+        /* 
+          ## ? css entities 
+        */
+        // display: inline-block;
+        content: "\002B";
+        // padding-right: 10px;
+      }
+    }
+  }
+
+}
+
+
+/* 
+  ## pencil 
+    * icon 사용하지 않고 "Pseudo-class"를 사용해서 icon 처럼 만들 수 있는것 사용
+    * dom을 붙여야 하므로 mouseover 했을때만 보이게 하려면 display: none을 사용해야 한다.
+
+*/
+
+
+.pencil {
+  width: 10px;
+  height: 50px;
+  // width: attr();
+  // height: attr();
+  background: dimgray;
+  position: relative;
+  transform: rotate(30deg);
+
+  &:before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: dimgray;
+    top: -13px;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: dimgray;
+    left: 1px;
+    bottom: -4px;
+    transform: rotate(45deg);
+  }
+}

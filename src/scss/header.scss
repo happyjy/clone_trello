@@ -1,0 +1,254 @@
+$bg: #cd5a91;
+$bg1: #DA83AB;
+$bg2: #AF4C7B;
+
+$bg3: #DEE1E5;
+$font: #fff;
+
+body {
+  color: $font;
+}
+
+.container {
+  background-color: $bg;
+
+  width: 100vw;
+  height: 100vh;
+
+  // .body-container {
+  //   margin: 5px;
+  //   width: 100%;
+  //   height: 100%;
+  //   border: 1px solid black;
+
+  // }
+  .header_container {
+    height: 40px;
+    padding: 4px 8px 4px 8px;
+    background-color: $bg2;
+
+    &>* {
+      // padding: 3px;
+      // border: 1px solid salmon;
+    }
+
+    display: flex;
+    justify-content: space-between;
+
+    &_left {
+      // border: 1px solid #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .header_container_left_items {
+        // border: 1px solid sandybrown;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .header_container_left_item {
+          display: flex;
+          justify-content: center;
+          // align-items: center;
+          // position: absolute;// top: 10px;
+          // right: 12px;
+          max-width: 2rem; // ## 1rem == 16px(root font size)
+          max-height: 2rem;
+          border: 0;
+          background-color: $bg1;
+          border-radius: 3px;
+          padding: 5px;
+
+          .img {
+            //             width: 20px;
+            // height: 20px;
+          }
+        }
+      }
+
+      &_item {
+        &:not(:last-child) {
+          margin-right: 5px;
+        }
+      }
+    }
+
+    &_center {
+      position: relative;
+      padding: 10px;
+      width: 50px;
+
+
+      a.hcc_home_container {
+
+        .hcc_home {
+          height: 24px;
+          width: 24px;
+
+
+          &::before {
+            opacity: 0.5;
+            content: '';
+            background-image: url(https://a.trellocdn.com/prgb/dist/images/header-logo-spirit.d947df93bc055849898e.gif);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+
+    &_right {
+      // border:1px solid white;
+      width: 40px;
+
+      &_items {
+        // .header_container_right_item {//   // background-color: #fff;
+        //   // border: 1px red solid;
+        // }
+
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+
+        .profile_container {
+          width: 2rem;
+          height: 2rem;
+
+          // padding: 10px;
+          .profile_name {
+            /* 
+              ## ? 문자가 원 중앙이 맞지 않음 
+                * trello 참고해보자.
+            */
+            display: inline-block;
+            border-radius: 50%;
+            color: black;
+            width: 100%;
+            height: 100%;
+            // vertical-align: middle;
+            text-align: center;
+            background-color: $bg3;
+            font-weight: 600;
+
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            // display: flex;
+            // justify-content: center;
+
+            // margin-top: auto;
+            // margin-bottom: auto;
+            &_text {
+              position: relative;
+              top: 3px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.content_header_container {
+  padding: 8px 8px 4px 8px;
+  // border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+
+  .content_header_item {
+    // line-height: 34px;
+    // vertical-align: middle;
+    // height: 34px;
+    // padding: 0 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 7px;
+    /* 
+      ## ? header_container_left_item 아이콘과 높이를 같게 하려면 어떻게 해야할까?
+    */
+    min-height: 2rem;
+    height: 34px;
+    // min-height: 32px;
+  }
+
+  .content_header_left {
+    display: flex;
+
+    &>* {
+      background-color: $bg1;
+      // padding: 10px;
+    }
+
+    .title {
+      // margin-right: 5px;
+    }
+
+    .account_name {}
+
+    &_item {
+      /* 
+        ## ? vertical-align: center;
+        글자 중앙 정렬 
+      */
+      border-radius: 3px;
+
+      &:not(:last-child) {
+        /* 
+            ## ? last 빼고 margin-right 주기 
+              * 하위 selector 중이 아니라 
+              * 선택된 selector 중에서 last-child 적용됨.
+          */
+        // border: 2px red solid;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .content_header_right {
+    &>* {
+      // background-color: $bg1;
+      // padding: 10px;
+    }
+
+    display: flex;
+
+    &_item {
+      background-color: $bg1;
+      border-radius: 3px;
+      // background-color: bisque;
+      // padding: 10px;
+
+      &>span {
+        // background: black;
+        padding: 0 8px;
+
+        &::before {
+          background: red;
+          /* ## ? before 포함하기 */
+          display: inline-block;
+          content: "\B7\B7\B7";
+          background-color: $bg1;
+          // padding: 10px;
+          border-radius: 3px;
+          margin-right: 6px;
+          // vertical-align: baseline;
+        }
+      }
+    }
+
+    .header_menu {}
+  }
+}
