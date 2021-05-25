@@ -243,40 +243,6 @@ body {
   height: 100%;
 }
 
-.container .header_container_right_items .profile_container {
-  width: 2rem;
-  height: 2rem;
-}
-
-.container .header_container_right_items .profile_container .profile_name {
-  /* 
-              ## ? 문자가 원 중앙이 맞지 않음 
-                * trello 참고해보자.
-            */
-  display: inline-block;
-  border-radius: 50%;
-  color: black;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  background-color: #DEE1E5;
-  font-weight: 600;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.container .header_container_right_items .profile_container .profile_name_text {
-  position: relative;
-  top: 3px;
-}
-
 .content_header_container {
   padding: 8px 8px 4px 8px;
   display: -webkit-box;
@@ -303,6 +269,11 @@ body {
     */
   min-height: 2rem;
   height: 34px;
+}
+
+.content_header_container .text_label {
+  position: relative;
+  top: 2px;
 }
 
 .content_header_container .content_header_left {
@@ -363,8 +334,309 @@ body {
 /* 
   ## ? index.css watch 컴파일 될때만 변경된다.
 */
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 /* 
   ## ? 폰트가 전체적으로 위로 올라가서 이걸 해결해주려면 font 관련 내용을 찾아봐야겠다.
+*/
+/* 
+  # 공통 styleing
+*/
+.card_link {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.profile_container {
+  width: 2rem;
+  height: 2rem;
+}
+
+.profile_container .profile_name {
+  /* 
+      ## ? 문자가 원 중앙이 맞지 않음 
+        * trello 참고해보자.
+    */
+  display: inline-block;
+  border-radius: 50%;
+  color: black;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: #DEE1E5;
+  font-weight: 600;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.profile_container .profile_name_text {
+  position: relative;
+  top: 3px;
+}
+
+/* 
+  # modal 영역 styling
+*/
+.modal_open {
+  display: block;
+}
+
+.modal_overlay {
+  color: #000000;
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: #322e30ab;
+  z-index: 1000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal_overlay .modal_content_container {
+  display: table;
+  background-color: #D8D9DC;
+  width: 768px;
+  height: 80%;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.modal_overlay .modal_content_container .modal_header {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.modal_overlay .modal_content_container .modal_header_icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 32px;
+  height: 32px;
+  padding: 5px;
+}
+
+.modal_overlay .modal_content_container .modal_header_title_container {
+  padding: 5px;
+}
+
+.modal_overlay .modal_content_container .modal_header_title_container .modal_header_title {
+  font-weight: 600;
+}
+
+.modal_overlay .modal_content_container .modal_header_title_container .modal_header_card_Type {
+  margin-top: 10px;
+  color: #5e6c84;
+}
+
+.modal_overlay .modal_content_container .modal_content {
+  /* 
+        ## [point][codepen] float 사용시 좌우 길이 맞는 좋은 방법은 뭘ㄲㅏ?
+        * 좌우 "width"를 퍼센트 합이 100%로 맞춰주고 
+        * "box-sizing: border-box"로 해줘야 float:right아 아래 방향으로 넘어 가지 않는다.
+      */
+  /* 
+        ## float 적용 el, hieght 100%일때 parent el에 100% 되게 하는 방법 
+        [height - w3org](https://www.w3.org/TR/CSS2/visudet.html#the-height-property)
+      */
+  float: left;
+  width: 80%;
+  height: 80%;
+}
+
+.modal_overlay .modal_content_container .modal_content_description_title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.modal_overlay .modal_content_container .modal_content_description_title_icon {
+  padding: 10px;
+}
+
+.modal_overlay .modal_content_container .modal_content_description_title_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.modal_overlay .modal_content_container .modal_content_description_title_container span {
+  font-weight: 800;
+  padding: 10px;
+}
+
+.modal_overlay .modal_content_container .modal_content_description_title_container div {
+  background-color: #D8D9DC;
+  padding: 10px;
+  border-radius: 3px;
+  font-weight: 400;
+}
+
+.modal_overlay .modal_content_container .modal_content_description_main_container .modal_content_description_main_display {
+  padding: 20px 20px 20px 45px;
+}
+
+.modal_overlay .modal_content_container .modal_content_description_main_container .modal_content_description_main_display .btn_add_scription {
+  padding: 10px 10px 20px;
+  background-color: #D8D9DC;
+  vertical-align: text-top;
+  border-radius: 3px;
+  font-weight: 400;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_title_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_title_container .modal_content_activity_title_icon {
+  padding: 10px;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_title_container .modal_content_activity_title {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_title_container .modal_content_activity_title span {
+  font-weight: 800;
+  padding: 10px;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_title_container .modal_content_activity_title div {
+  background-color: #D8D9DC;
+  padding: 10px;
+  border-radius: 3px;
+  font-weight: 400;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_main_container .modal_content_activity_main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 10px;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_main_container .modal_content_activity_main > textarea {
+  margin-left: 10px;
+  width: 100%;
+  height: 32px;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_reply_container .reply_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 25px;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_reply_container .reply_container .reply_content_container {
+  padding-left: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_reply_container .reply_container .reply_content_container .reply_content_title_writer {
+  font-weight: 800;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_reply_container .reply_container .reply_content_container .reply_content_title_reply_content_date {
+  font-weight: 500;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_reply_container .reply_container .reply_content_container .reply_content {
+  margin-top: 7px;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_reply_container .reply_container .reply_content_container .reply_content_box {
+  display: inline-block;
+  padding: 10px;
+  background-color: #fff;
+  border: 1.5px #F4F5F7 solid;
+  border-radius: 3px;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_reply_container .reply_container .reply_content_container .reply_content_reply_modify_container {
+  color: #5e6c84;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_reply_container .reply_container .reply_content_container .reply_content_reply_modify_container > * {
+  margin: 0px;
+  display: inline-block;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_reply_container .reply_container .reply_content_container .reply_content_reply_modify_container > *:not(:last-child) {
+  padding: 10px 0 10px 10px;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_reply_container .reply_container .reply_content_container .reply_content_reply_modify_container > *:not(:last-child):after {
+  /* 
+                      ## text-decoration 적용위해서 display: inline-block 사용이유 
+                        * [text-decoration 적용위해서 display: inline-block 사용이유 ](https://stackoverflow.com/questions/1238881/text-decoration-and-the-after-pseudo-element-revisited)
+                    */
+  display: inline-block;
+  margin-left: 5px;
+  content: "-";
+  text-decoration: none;
+}
+
+.modal_overlay .modal_content_container .modal_sidebar {
+  border: 1px solid black;
+  float: right;
+  width: 20%;
+  height: 80%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/* 
+  # content 영역 styling 
 */
 .content_container {
   padding: 4px 8px 8px 8px;
@@ -416,7 +688,7 @@ body {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 13px 10px 0 15px;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 .content_container .content_container_item .card_container .card_title:after {

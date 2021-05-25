@@ -3,6 +3,10 @@
 @import './header';
 @import './contents';
 
+* {
+  box-sizing: border-box;
+}
+
 /* 
   ## ? 폰트가 전체적으로 위로 올라가서 이걸 해결해주려면 font 관련 내용을 찾아봐야겠다.
 */
@@ -15,9 +19,343 @@ $cardBg1: #F4F5F7;
 $cardBg2: #D8D9DC;
 $cardBg3: #a5a5a5;
 
+
+$modal_bg: #322e30;
+$modal_overlay_bg: #322e30ab;
+
 $font: #fff;
 $font1: #172b4d;
 $font2: #5e6c84;
+
+/* 
+  # 공통 styleing
+*/
+
+.card_link {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.profile_container {
+  width: 2rem;
+  height: 2rem;
+
+  .profile_name {
+    /* 
+      ## ? 문자가 원 중앙이 맞지 않음 
+        * trello 참고해보자.
+    */
+    display: inline-block;
+    border-radius: 50%;
+    color: black;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: $bg3;
+    font-weight: 600;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    // display: flex;
+    // justify-content: center;
+
+    // margin-top: auto;
+    // margin-bottom: auto;
+    &_text {
+      position: relative;
+      top: 3px;
+    }
+  }
+}
+
+/* 
+  # modal 영역 styling
+*/
+.modal_open {
+  display: block;
+}
+
+.modal_overlay {
+  color: #000000;
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: $modal_overlay_bg;
+  // opacity: 0.3;
+
+  z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // .clearfix {
+  //   content: " ";
+  //   clear: both;
+  //   display: table;
+
+  //   &::after {
+  //     content: " ";
+  //     clear: both;
+  //     display: table;
+  //   }
+  // }
+
+  .modal_content_container {
+    // overflow: hidden;
+    // clear: both;
+
+    // display: block;
+    display: table;
+    background-color: $cardBg2;
+    width: 768px;
+    height: 80%;
+    padding: 10px;
+    border-radius: 3px;
+    // overflow: hidden;
+
+
+    .modal_header {
+      // border: 1px solid red;
+      box-sizing: border-box;
+      // height: 20%;
+      width: 100%;
+      display: flex;
+
+
+      &_icon {
+        // border: 1px solid red;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        width: 32px;
+        height: 32px;
+        padding: 5px;
+      }
+
+
+      &_title_container {
+        // border: 1px solid blue;
+        padding: 5px;
+
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-between;
+        .modal_header_title {
+          font-weight: 600;
+        }
+
+        .modal_header_card_Type {
+          margin-top: 10px;
+          color: $font2;
+        }
+      }
+    }
+
+    .modal_content {
+      // border: 1px solid blue;
+      /* 
+        ## [point][codepen] float 사용시 좌우 길이 맞는 좋은 방법은 뭘ㄲㅏ?
+        * 좌우 "width"를 퍼센트 합이 100%로 맞춰주고 
+        * "box-sizing: border-box"로 해줘야 float:right아 아래 방향으로 넘어 가지 않는다.
+      */
+      /* 
+        ## float 적용 el, hieght 100%일때 parent el에 100% 되게 하는 방법 
+        [height - w3org](https://www.w3.org/TR/CSS2/visudet.html#the-height-property)
+      */
+      float: left;
+      width: 80%;
+      height: 80%;
+
+      &_description {
+        // border: 1px solid black;
+
+        &_title {
+          display: flex;
+
+          &_icon {
+            padding: 10px;
+          }
+
+          &_container {
+            display: flex;
+
+            & span {
+              font-weight: 800;
+              padding: 10px;
+            }
+
+            & div {
+              background-color: $cardBg2;
+              padding: 10px;
+              border-radius: 3px;
+              font-weight: 400;
+            }
+          }
+        }
+
+        &_main_container {
+          .modal_content_description_main_display {
+            padding: 20px 20px 20px 45px;
+            // background-color: skyblue;
+
+            .btn_add_scription {
+              padding: 10px 10px 20px;
+              background-color: $cardBg2;
+              vertical-align: text-top;
+              border-radius: 3px;
+              font-weight: 400;
+            }
+          }
+        }
+
+      }
+
+      .modal_content_activity {
+        box-sizing: border-box;
+        // border: 2px black solid;
+        width: 100%;
+
+        .modal_content_activity_title_container {
+          display: flex;
+
+
+          .modal_content_activity_title_icon {
+            padding: 10px;
+          }
+
+          .modal_content_activity_title {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            & span {
+              font-weight: 800;
+              padding: 10px;
+            }
+
+            & div {
+              background-color: $cardBg2;
+              padding: 10px;
+              border-radius: 3px;
+              font-weight: 400;
+            }
+
+          }
+        }
+
+        .modal_content_activity_main_container {
+          .modal_content_activity_main {
+            display: flex;
+            padding-top: 10px;
+
+            // .profile_container {
+            //   padding: 10px;
+            // width: 40px;
+            // height: 40px;
+            // }
+
+            &>textarea {
+              margin-left: 10px;
+              width: 100%;
+              height: 32px;
+            }
+
+          }
+        }
+
+        .modal_content_activity_reply_container {
+
+          .reply_container {
+            display: flex;
+            margin-top: 25px;
+
+            .reply_content_container {
+              padding-left: 10px;
+              display: flex;
+              flex-direction: column;
+
+              .reply_content_title {
+                // display: block;
+
+                &_writer {
+                  font-weight: 800;
+                }
+
+                &_reply_content_date {
+                  font-weight: 500;
+                }
+              }
+
+              .reply_content {
+                // display: block;
+                margin-top: 7px;
+
+                &_box {
+                  display: inline-block;
+                  padding: 10px;
+                  background-color: #fff;
+                  border: 1.5px $cardBg1 solid;
+                  border-radius: 3px;
+                }
+
+                &_edit {}
+              }
+
+              .reply_content_reply_modify_container {
+
+                color: $font2;
+
+
+                &>* {
+                  margin: 0px;
+                  display: inline-block;
+
+                  &:not(:last-child) {
+                    padding: 10px 0 10px 10px;
+
+                    // margin-right: 5px;
+                    &:after {
+                      /* 
+                      ## text-decoration 적용위해서 display: inline-block 사용이유 
+                        * [text-decoration 적용위해서 display: inline-block 사용이유 ](https://stackoverflow.com/questions/1238881/text-decoration-and-the-after-pseudo-element-revisited)
+                    */
+                      display: inline-block;
+                      margin-left: 5px;
+                      content: "-";
+                      text-decoration: none;
+                    }
+                  }
+                }
+
+                .reply_edit {
+                  &:after {}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+    .modal_sidebar {
+      border: 1px solid black;
+      float: right;
+      width: 20%;
+      height: 80%;
+      box-sizing: border-box;
+    }
+  }
+}
+
+/* 
+  # content 영역 styling 
+*/
 
 .content_container {
   padding: 4px 8px 8px 8px;
@@ -64,7 +402,7 @@ $font2: #5e6c84;
         display: flex;
         justify-content: space-between;
         padding: 13px 10px 0 15px;
-        font-weight: 600;
+        font-weight: 800;
 
         &:after {
           // content: "\B7\B7\B7";  // * \B7: middle dot
