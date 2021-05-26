@@ -164,6 +164,9 @@
           <div class="modal_header_title_container">
             <div class="modal_header_title">
               <span>카드 제목입니다 !</span>
+              <span>
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </span>
             </div>
             <div class="modal_header_card_Type">
               <span>in list </span><span class="card_link">CARD Name</span>
@@ -178,18 +181,20 @@
               </div>
               <div class="modal_content_description_title_container">
                 <span>Description</span>
-                <div>Edit</div>
+                <div class="modal_box" id="descriptionEditBtn">Edit</div>
               </div>
             </div>
             <div class="modal_content_description_main_container">
-              <div class="modal_content_description_main_display">
+              <!-- <div class="modal_content_description_main_display" style="display: none"> -->
+              <div class="modal_content_description_main_display" style="">
                 <p>작성하고 싶은 내용을 작성하는 Description 영역 입니다.</p>
-                <div class="btn_add_scription" style="display: none;">Add a more detaild scription...</div>
+                <!-- style="display: none" -->
+                <div class="btn_add_scription modal_box" style="display: none">Add a more detaild scription...</div>
               </div>
               <div class="description_edit" style="display: none;">
-                <textarea name="" id="" cols="30" rows="10">
-                  작성하고 싶은 내용을 작성하는 Description 영역 입니다.
-                </textarea>
+                <!-- <div class="description_edit" style=""> -->
+                <textarea id="description_edit_textarea" name="" id="" cols="30"
+                  rows="10">작성하고 싶은 내용을 작성하는 Description 영역 입니다.</textarea>
               </div>
             </div>
           </div>
@@ -200,7 +205,7 @@
               </div>
               <div class="modal_content_activity_title">
                 <span class="">Activity</span>
-                <div class="modal_content_activity_title_btn">Show details</div>
+                <div class="modal_content_activity_title_btn modal_box">Show details</div>
               </div>
             </div>
             <div class="modal_content_activity_main_container">
@@ -210,8 +215,49 @@
                     <span class="profile_name_text">JY</span>
                   </div>
                 </div>
-                <textarea name="" id="" cols="30" rows="5" placeholder="Wrtie a comment...">
-              </textarea>
+                <!--
+                  ## 참고
+                    * [stackoverflow](https://stackoverflow.com/questions/10186913/html5-textarea-placeholder-not-appearing)
+
+                  # good
+                  <textarea></textarea> 
+                  
+                  # bad - 태그안에 newline이 들어간것으로 인지한다.(그래서 placeholder가 보이지 않는다.)
+                  <textarea>                                      
+                  </textarea> 
+
+                 -->
+                <!-- cols="30" -->
+                <div class="modal_content_activity_textArea_container">
+                  <textarea name="" id="" rows="1" dir="auto" placeholder="Wrtie a comment..."></textarea>
+                  <div class="modal_content_activity_textArea_option">
+                    <div class="save_container modal_box modal_box_blue">
+                      <span class="">Save</span>
+                    </div>
+                    <div class="option_container">
+                      <div class="modal_box">
+                        <span class="option_item">
+                          <i class="fa fa-paperclip" aria-hidden="true"></i>
+                        </span>
+                      </div>
+                      <div class="modal_box">
+                        <span class="option_item">
+                          <i class="fa fa-at" aria-hidden="true"></i>
+                        </span>
+                      </div>
+                      <div class="modal_box">
+                        <span class="option_item">
+                          <i class="fa fa-smile-o" aria-hidden="true"></i>
+                        </span>
+                      </div>
+                      <div class="modal_box">
+                        <span class="option_item">
+                          <i class="fa fa-credit-card" aria-hidden="true"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="modal_content_activity_reply_container">
@@ -324,7 +370,19 @@
           </div>
         </div>
         <div class="modal_sidebar">
-
+          <div class="addCard_container">
+            <div class="addCard_title">ADD TO CARD</div>
+            <div class="addCard modal_box">Label</div>
+            <div class="addCard modal_box">CheckList</div>
+            <div class="addCard modal_box">Date</div>
+          </div>
+          <div class="action_container">
+            <div class="action_title">ACTIONS</div>
+            <div class="action modal_box">Move</div>
+            <div class="action modal_box">Copy</div>
+            <div class="action modal_box">Archive</div>
+            <div class="action modal_box">Share</div>
+          </div>
         </div>
       </div>
     </div>

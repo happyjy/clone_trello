@@ -340,7 +340,14 @@ body {
 }
 
 /* 
-  ## ? 폰트가 전체적으로 위로 올라가서 이걸 해결해주려면 font 관련 내용을 찾아봐야겠다.
+.modal_overlay
+  ㄴ.modal_content_container
+    ㄴ.modal_header
+    ㄴ.modal_content
+    ㄴ.modal_sidebar
+*/
+/* 
+  ## ? 폰트가 전체적으로 위로 올라가서 이걸 해결해주려면 font 관련 내용을 찾아봐야겠다.s
 */
 /* 
   # 공통 styleing
@@ -351,7 +358,23 @@ body {
 }
 
 .profile_container {
-  width: 2rem;
+  /* 
+    ## flex item이 width가 2rem 만큼 적용안돼서 추가 
+    ## ? 왜그런지 확인하기
+      * [stackoverflow](https://stackoverflow.com/a/21413841/3937115)
+      
+      * 해결방법1
+        - flow-grow, flex-shrink에 대해서 확인하기 
+      ```
+        flex-grow: 0;
+        flex-shrink: 0;
+      ```
+      * 해결방법2
+        - width대신 min-width사용하기
+        - ? widht, min-width, max-width 차이 확인하기
+
+  */
+  min-width: 2rem;
   height: 2rem;
 }
 
@@ -384,6 +407,27 @@ body {
   top: 3px;
 }
 
+.modal_box {
+  background-color: #e7eaee;
+  padding: 10px;
+  border-radius: 3px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.modal_box:hover {
+  background-color: #cfd2d8;
+}
+
+.modal_box_blue {
+  background-color: #147dba;
+  color: #eeeeee;
+}
+
+.modal_box_blue:hover {
+  background-color: #046AA6;
+}
+
 /* 
   # modal 영역 styling
 */
@@ -414,9 +458,9 @@ body {
 
 .modal_overlay .modal_content_container {
   display: table;
-  background-color: #D8D9DC;
+  background-color: #F4F5F7;
   width: 768px;
-  height: 80%;
+  max-height: 80%;
   padding: 10px;
   border-radius: 3px;
 }
@@ -447,9 +491,16 @@ body {
 
 .modal_overlay .modal_content_container .modal_header_title_container {
   padding: 5px;
+  width: 100%;
 }
 
 .modal_overlay .modal_content_container .modal_header_title_container .modal_header_title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   font-weight: 600;
 }
 
@@ -469,7 +520,7 @@ body {
         [height - w3org](https://www.w3.org/TR/CSS2/visudet.html#the-height-property)
       */
   float: left;
-  width: 80%;
+  width: 70%;
   height: 80%;
 }
 
@@ -495,22 +546,51 @@ body {
 }
 
 .modal_overlay .modal_content_container .modal_content_description_title_container div {
-  background-color: #D8D9DC;
+  background-color: #e7eaee;
   padding: 10px;
   border-radius: 3px;
   font-weight: 400;
 }
 
+.modal_overlay .modal_content_container .modal_content_description_title_container div:hover {
+  background-color: #cfd2d8;
+}
+
+.modal_overlay .modal_content_container .modal_content_description_main_container {
+  --var-left-margin: 45px;
+}
+
 .modal_overlay .modal_content_container .modal_content_description_main_container .modal_content_description_main_display {
-  padding: 20px 20px 20px 45px;
+  position: relative;
+  left: var(--var-left-margin);
+  width: calc(100% - var(--var-left-margin));
+  padding: 10px 20px 20px 0px;
+  cursor: pointer;
 }
 
 .modal_overlay .modal_content_container .modal_content_description_main_container .modal_content_description_main_display .btn_add_scription {
   padding: 10px 10px 20px;
-  background-color: #D8D9DC;
   vertical-align: text-top;
   border-radius: 3px;
   font-weight: 400;
+}
+
+.modal_overlay .modal_content_container .modal_content_description_main_container .description_edit {
+  position: relative;
+  left: var(--var-left-margin);
+  width: calc(100% - var(--var-left-margin));
+}
+
+.modal_overlay .modal_content_container .modal_content_description_main_container .description_edit > textarea {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  resize: none;
+  border: 1px #dfdfdf solid;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0.3px 0.3px 1px;
+          box-shadow: rgba(0, 0, 0, 0.2) 0.3px 0.3px 1px;
+  font-size: 1rem;
+  letter-spacing: normal;
 }
 
 .modal_overlay .modal_content_container .modal_content .modal_content_activity {
@@ -545,10 +625,14 @@ body {
 }
 
 .modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_title_container .modal_content_activity_title div {
-  background-color: #D8D9DC;
+  background-color: #e7eaee;
   padding: 10px;
   border-radius: 3px;
   font-weight: 400;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_title_container .modal_content_activity_title div:hover {
+  background-color: #cfd2d8;
 }
 
 .modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_main_container .modal_content_activity_main {
@@ -558,17 +642,88 @@ body {
   padding-top: 10px;
 }
 
-.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_main_container .modal_content_activity_main > textarea {
-  margin-left: 10px;
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_main_container .modal_content_activity_main .profile_name {
+  background-color: #dfe1e6;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_main_container .modal_content_activity_main .modal_content_activity_textArea_container {
   width: 100%;
-  height: 32px;
+  height: 100%;
+  padding-left: 10px;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_main_container .modal_content_activity_main .modal_content_activity_textArea_container > textarea {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  resize: none;
+  border: 1px #dfdfdf solid;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0.3px 0.3px 1px;
+          box-shadow: rgba(0, 0, 0, 0.2) 0.3px 0.3px 1px;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_main_container .modal_content_activity_main .modal_content_activity_textArea_container .modal_content_activity_textArea_option {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 10px;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_main_container .modal_content_activity_main .modal_content_activity_textArea_container .modal_content_activity_textArea_option .save_container {
+  height: 38px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_main_container .modal_content_activity_main .modal_content_activity_textArea_container .modal_content_activity_textArea_option .save_container > span {
+  /* 
+                      ## 영문 중앙으로오게 하는 좋은 방법 찾아보기!
+                    */
+  position: relative;
+  top: 3px;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_main_container .modal_content_activity_main .modal_content_activity_textArea_container .modal_content_activity_textArea_option .option_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_main_container .modal_content_activity_main .modal_content_activity_textArea_container .modal_content_activity_textArea_option .option_container .modal_box {
+  background-color: inherit;
+  width: 38px;
+  height: 38px;
+  text-align: center;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_main_container .modal_content_activity_main .modal_content_activity_textArea_container .modal_content_activity_textArea_option .option_container .modal_box:hover {
+  background-color: #cfd2d8;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_main_container .modal_content_activity_main .modal_content_activity_textArea_container .modal_content_activity_textArea_option .option_container .modal_box:not(:last-child) {
+  margin-right: 10px;
 }
 
 .modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_reply_container .reply_container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-top: 10px;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_reply_container .reply_container:first-child {
   margin-top: 25px;
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_reply_container .reply_container .profile_name {
+  background-color: #dfe1e6;
 }
 
 .modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_reply_container .reply_container .reply_content_container {
@@ -586,8 +741,16 @@ body {
   font-weight: 800;
 }
 
-.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_reply_container .reply_container .reply_content_container .reply_content_title_reply_content_date {
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_reply_container .reply_container .reply_content_container .reply_content_title_date {
+  vertical-align: -10%;
+  font-size: 0.8rem;
   font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_reply_container .reply_container .reply_content_container .reply_content_title_date:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .modal_overlay .modal_content_container .modal_content .modal_content_activity .modal_content_activity_reply_container .reply_container .reply_content_container .reply_content {
@@ -598,7 +761,7 @@ body {
   display: inline-block;
   padding: 10px;
   background-color: #fff;
-  border: 1.5px #F4F5F7 solid;
+  border: 1.5px #dfdfdf solid;
   border-radius: 3px;
 }
 
@@ -627,12 +790,42 @@ body {
 }
 
 .modal_overlay .modal_content_container .modal_sidebar {
-  border: 1px solid black;
-  float: right;
-  width: 20%;
-  height: 80%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  float: right;
+  width: 30%;
+  height: 80%;
+  box-sizing: border-box;
+}
+
+.modal_overlay .modal_content_container .modal_sidebar > * {
+  padding: 0 5px 5px 20px;
+}
+
+.modal_overlay .modal_content_container .modal_sidebar .addCard:active,
+.modal_overlay .modal_content_container .modal_sidebar .action:active {
+  background-color: #b0e2ff;
+  color: #50bfff;
+}
+
+.modal_overlay .modal_content_container .modal_sidebar .modal_box:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.modal_overlay .modal_content_container .modal_sidebar .addCard_container {
+  margin-bottom: 20px;
+}
+
+.modal_overlay .modal_content_container .modal_sidebar .addCard_container .addCard_title {
+  margin-bottom: 10px;
+  color: #5e6c84;
+  font-weight: 600;
+}
+
+.modal_overlay .modal_content_container .modal_sidebar .action_container .action_title {
+  margin-bottom: 10px;
+  color: #5e6c84;
+  font-weight: 600;
 }
 
 /* 
@@ -650,7 +843,7 @@ body {
 
 .content_container .card_item {
   display: block;
-  background-color: #F4F5F7;
+  background-color: #dfdfdf;
   width: 256px;
   border-radius: 3px;
   padding: 7px;
@@ -674,7 +867,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: #DEE1E5;
+  background-color: #c9c9c9;
   color: #172b4d;
   border-radius: 3px;
   height: 100%;
@@ -696,7 +889,7 @@ body {
 }
 
 .content_container .content_container_item .card_container .card_title:after:hover {
-  background-color: #D8D9DC;
+  background-color: #8c8c8c;
 }
 
 .content_container .content_container_item .card_contents_container .card_item {
@@ -715,7 +908,7 @@ body {
 }
 
 .content_container .content_container_item .card_contents_container .card_item:not(:last-child):hover {
-  background-color: #D8D9DC;
+  background-color: #8c8c8c;
   cursor: pointer;
 }
 
@@ -732,7 +925,7 @@ body {
 .content_container .content_container_item .card_contents_container .card_item:last-child {
   display: block;
   color: #5e6c84;
-  background-color: #DEE1E5;
+  background-color: #c9c9c9;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -777,7 +970,7 @@ body {
 }
 
 .content_container .content_addListBtn .content_addListBtn_title {
-  color: #fff;
+  color: #eeeeee;
 }
 
 .content_container .content_addListBtn .content_addListBtn_title:before {
@@ -821,4 +1014,34 @@ body {
   bottom: -4px;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
+}
+
+/* 
+  ## activity animation 
+    * activity textarea 클릭시 textArea_option 나오도록 animation
+  ## [!] codepen 정리하기
+*/
+/* 
+  ## Use pseudo-selectors to trigger CSS transitions
+  [Use pseudo-selectors to trigger CSS transitions
+](https://openclassrooms.com/en/courses/5625816-create-modern-css-animations/5792421-use-pseudo-selectors-to-trigger-css-transitions)
+*/
+textarea:focus + .modal_content_activity_textArea_option {
+  height: 40px;
+  overflow: hidden;
+}
+
+/* 
+  ## ? display: table-column에 대해서 확인 하기
+*/
+.modal_content_activity_textArea_option {
+  height: 0px;
+  overflow: hidden;
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+}
+
+textarea:focus,
+input:focus {
+  outline: 0;
 }
