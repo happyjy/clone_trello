@@ -372,21 +372,67 @@
         <div class="modal_sidebar">
           <div class="addCard_container">
             <div class="addCard_title">ADD TO CARD</div>
-            <div class="addCard modal_box">Label</div>
-            <div class="addCard modal_box">CheckList</div>
-            <div class="addCard modal_box">Date</div>
+            <div class="addCard modal_box" data-title="label">Label</div>
+            <div class="addCard modal_box" data-title="checklist">CheckList</div>
+            <div class="addCard modal_box" data-title="date">Date</div>
           </div>
           <div class="action_container">
             <div class="action_title">ACTIONS</div>
-            <div class="action modal_box">Move</div>
-            <div class="action modal_box">Copy</div>
-            <div class="action modal_box">Archive</div>
-            <div class="action modal_box">Share</div>
+            <div class="action modal_box" data-title="move">Move</div>
+            <div class="action modal_box" data-title="copy">Copy</div>
+            <div class="action modal_box" data-title="archive">Archive</div>
+            <div class="action modal_box" data-title="share">Share</div>
           </div>
         </div>
       </div>
     </div>
-    <script src="./index.js"></script>
+    <div id="dropdownLayerContainer" style="z-index: 2000;">
+      <!-- <div class="dropdownLayer" data-title="date"
+        style="min-height: 100px; background-color: rgb(255, 255, 255); border-radius: 3px; color: rgb(23, 43, 77); padding: 5px; position: absolute; z-index: 2000; width: 299.391px; top: 592.5px; left: 743.109px;">
+        <div class="dl_title_container">
+          <span class="dl_title">Label</span>
+          <span>
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </span>
+        </div>
+        <div class="dl_search_container">
+          <input type="text" placeholder="Search labels...">
+        </div>
+        <div class="dl_labels_container">
+          <div class="dl_label_title">
+            <label>LABELS</label>
+          </div>
+          <div class="dl_label_item_container">
+            <label class="dl_label_item"></label>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </div>
+          <div class="dl_label_item_container">
+            <label class="dl_label_item"></label>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </div>
+          <div class="dl_label_item_container">
+            <label class="dl_label_item"></label>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </div>
+          <div class="dl_label_item_container">
+            <label class="dl_label_item"></label>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </div>
+          <div class="dl_label_item_container">
+            <label class="dl_label_item"></label>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="dl_create_new_label_container">
+          <div class="dl_create_new_label">
+            <label>Create a new label</label>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+  <script src="./labelUi.js"></script>
+  <script src="./index.js"></script>
 </body>
 
 </html>
