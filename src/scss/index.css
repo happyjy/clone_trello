@@ -462,7 +462,7 @@ body {
   background-color: #C278E0;
 }
 
-.dropdownLayer .dl_add_label_container #dl_add_label_input {
+.dropdownLayer .dl_add_label_container #labelInput {
   border: 2px solid #cfd2d8;
   background-color: 2px solid #dbdfe6;
   border-radius: 3px;
@@ -471,7 +471,7 @@ body {
   height: var(--var--height);
 }
 
-.dropdownLayer .dl_add_label_container #dl_add_label_input:focus {
+.dropdownLayer .dl_add_label_container #labelInput:focus {
   border: 1px solid gray;
 }
 
@@ -571,6 +571,9 @@ body {
   height: 100vh;
   background-color: #322e30ab;
   z-index: 1000;
+  /*
+    moadal 임시
+  */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

@@ -112,6 +112,7 @@ $font2: #5e6c84;
         height: 100%;
         padding-left: 10px;
         line-height: var(--var--height);
+
       }
 
 
@@ -158,7 +159,7 @@ $font2: #5e6c84;
   }
 
   .dl_add_label_container {
-    #dl_add_label_input {
+    #labelInput {
       border: 2px solid #cfd2d8;
       background-color: 2px solid #dbdfe6;
       border-radius: 3px;
@@ -299,6 +300,9 @@ $font2: #5e6c84;
 
   z-index: 1000;
 
+  /*
+    moadal 임시
+  */
   display: flex;
   justify-content: center;
   align-items: center;

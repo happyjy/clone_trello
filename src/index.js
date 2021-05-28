@@ -12,8 +12,11 @@ $card_items.forEach((card_item, _) => {
       const $modalContainer = document.querySelector(".modal_overlay");
       
       return () => {
-        $modalContainer.style.display = 'flex';
-        // $modalContainer.classList.toggle('modal_open');
+        $modalContainer.style.cssText = `
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        `
       }
     })();
   
@@ -140,12 +143,12 @@ description_edit_textarea.onblur = (event) => {
 
 /* 
   ## 고민
-    * 2가지 방법 고민
-      * 클릭한 button container에 넣는것과
-      * body tag 안에 특정 부분에 dropdown을 append 하는 방법
-    * dropdown layer 제거 할때 고민. 
-      * dropdown layer 영역이 아닐 때 제거 해야 한다. 
-      * 클릭 이벤트가 일어날때 dropdown layer가 있는 것을 확인 후 제거한다.  
+  * 2가지 방법 고민
+    * 클릭한 button container에 넣는것과
+    * body tag 안에 특정 부분에 dropdown을 append 하는 방법
+  * dropdown layer 제거 할때 고민. 
+    * dropdown layer 영역이 아닐 때 제거 해야 한다. 
+    * 클릭 이벤트가 일어날때 dropdown layer가 있는 것을 확인 후 제거한다.  
 */
 const createLabelUiComponent = () => {
   const $dropdownLayerContainer = document.querySelector("#dropdownLayerContainer")
@@ -161,7 +164,7 @@ const createLabelUiComponent = () => {
 
   const config = {dropdownLayerContainerSelector, data}
   const labelUiInstance = new labelUi(config);
-
+// 
   return labelUiInstance;
 }
 
@@ -242,8 +245,9 @@ const dropdownLayerCbFn = (() => {
       }
     }
     
-    const LabelUiComponent = createLabelUiComponent();
-    const $dropdownLayerComponent = LabelUiComponent.$dropdownLayer;
+    // const LabelUiComponent = createLabelUiComponent();
+    this.LabelUiComponent = createLabelUiComponent();
+    const $dropdownLayerComponent = this.LabelUiComponent.$dropdownLayer;
     $dropdownLayerComponent.style.width = targetWidth+100+"px";
     $dropdownLayerComponent.style.top = `${targetBottom+5}px`;
     $dropdownLayerComponent.style.left = `${targetLeft}px`
