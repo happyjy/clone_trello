@@ -208,6 +208,9 @@ body {
 .container .header_container_center a.hcc_home_container .hcc_home {
   width: 90px;
   height: 24px;
+  /* 
+            [?] position말고 Trello 로고 정 중아에 맞출 수 있는 방법 없을까? 
+          */
   position: relative;
   left: -38px;
   top: -7px;
@@ -309,6 +312,10 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.content_header_container .content_header_right .header_menu {
+  cursor: pointer;
 }
 
 .content_header_container .content_header_right_item {

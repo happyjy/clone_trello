@@ -179,6 +179,10 @@ body {
   display: flex;
 }
 
+.content_header_container .content_header_right .header_menu {
+  cursor: pointer;
+}
+
 .content_header_container .content_header_right_item {
   background-color: #DA83AB;
   border-radius: 3px;

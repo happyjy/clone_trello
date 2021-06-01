@@ -227,6 +227,10 @@ body {
   }
 
   .content_header_right {
+    .header_menu {
+      cursor: pointer;
+    }
+
     &>* {
       // background-color: $bg1;
       // padding: 10px;
@@ -257,7 +261,5 @@ body {
         }
       }
     }
-
-    .header_menu {}
   }
 }

@@ -364,6 +364,16 @@ function allowDrop(event) {
 /**
  * # sidenav_content
  */
+document.querySelector(".header_menu").onclick = (e) => {
+  const $sidenav = document.querySelector(".sidenav")
+  const $container = document.querySelector(".container");
+  const width = "300px";
+  
+  $sidenav.style.width = width;
+  $sidenav.style.padding = "10px"
+  $container.style.marginRight = width;
+}
+
 document.querySelectorAll(".sidenav_content").forEach((el, i) => {
   const $sidenavContainerList = document.querySelectorAll(".sidenav_container");
 
@@ -381,7 +391,6 @@ document.querySelectorAll(".sidenav_content").forEach((el, i) => {
     })
   }
 })
-
 document.querySelectorAll("#sidenav_back_home").forEach((el, i)=>{
   const $sidenavContainerList = document.querySelectorAll(".sidenav_container");
   const $homeIndex = document.querySelector("#sidenav_main");
@@ -395,14 +404,15 @@ document.querySelectorAll("#sidenav_back_home").forEach((el, i)=>{
     })
   }
 })
-
-
 document.querySelectorAll(".sidenav_closebtn").forEach((el, i) => {
-  const $sidenavMostOuter = document.querySelector(".sidenav");
-  const $sidenavContainerList = document.querySelectorAll(".sidenav_container");
+  const $sidenav = document.querySelector(".sidenav")
+  const $container = document.querySelector(".container");
+
   el.onclick = (e) => {
-    $sidenavMostOuter.style.width = "0px";
-    $sidenavMostOuter.style.right = "-20px";
+    $sidenav.style.width = "0";
+    $sidenav.style.padding = "0px"
+    $container.style.marginRight = "0";
+
     [...$sidenavContainerList].forEach((e,i)=>{
       e.style.display='none';
     })
