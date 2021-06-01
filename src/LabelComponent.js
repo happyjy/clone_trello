@@ -1,13 +1,29 @@
-class labelUi{
+class LabelComponent {
 
   constructor(config){
     this.containerSelector = config.dropdownLayerContainerSelector;
-    this.labelDataList = config.data;
-    
-    this.container = document.querySelector(this.containerSelector);
+    this.labelDataList = config.config.data;
+    this.options = config.config.options;
 
+    this.container = document.querySelector(this.containerSelector);
     this.labelElements = this.initialize(this.containerSelector, this.labelDataList);
     this.inputElement = this.initializeInput(this.container);
+
+    this.InstantSearchComponent = InstantSearchComponent;
+    if(this.options?.simpleSearch){
+      const simpleSearchConfig = {
+        appendSelector: ".dl_search_container",
+        config: {
+          data: this.labelDataList,
+          placeholder: "Search Label...", 
+          delayTime: 600,
+        }
+      }
+
+      let InstantSearchComponent = new this.InstantSearchComponent(simpleSearchConfig);
+      InstantSearchComponent.labelAppendContainerSelector = this.containerSelector;
+      InstantSearchComponent.labelInit = this.initialize;
+    }
     
     this.eventBinding();
   }
@@ -34,15 +50,14 @@ class labelUi{
               <i id="labelDel" class="fa fa-times" aria-hidden="true"></i>
             </div>
           `
-      )
-      .join('');
+      ).join('');
 
-{/* <i class="fa fa-pencil" aria-hidden="true"></i> */}
-
-    const $addLabelInput = `<div class="dl_add_label_container">
-      <input id="labelInput" class="
-      labelInput" type="text" placeholder="add labels...">
-    </div>`
+    const $addLabelInput = `
+      <div class="dl_add_label_container">
+        <input id="labelInput" class="
+        labelInput" type="text" placeholder="add labels...">
+      </div>
+    `;
     
     let $initDataHtml = `
       <div class="dl_title_container">
@@ -51,9 +66,7 @@ class labelUi{
           <i class="fa fa-times" aria-hidden="true"></i>
         </span>
       </div>
-      <div class="dl_search_container">
-        <input type="text" placeholder="Search labels...">
-      </div>
+      <div class="dl_search_container"></div>
       <div class="dl_labels_container">
         <div class="dl_label_title">
           <label>LABELS</label>
@@ -61,11 +74,18 @@ class labelUi{
         ${$labelListDom}
       </div>
         ${$addLabelInput}
-      `
+    `;
+
+    // <div class="dl_search_container">
+    //   <input type="text" placeholder="Search labels...">
+    // </div>
+
     $dropdownLayer.innerHTML = $initDataHtml;
+    
     const container = document.querySelector(containerSelector);
     this.$dropdownLayer = $dropdownLayer;
     container.appendChild($dropdownLayer);
+
     return container;
   }
 
@@ -78,7 +98,6 @@ class labelUi{
       'keypress',
       ({ keyCode, target: { id, value }, target }) => {
         // 13 enter
-        debugger
         console.log("### keypress");
 
         if (id === 'labelInput' && keyCode === 13) {

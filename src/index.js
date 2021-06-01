@@ -25,10 +25,10 @@ $card_items.forEach((card_item, _) => {
   }
 })
 
-document.querySelector('.content_container').onclick = ((event) => {
+document.querySelector('.content_container').onclick = ((e) => {
   // console.log("# event, this: ", event, event.target, event.currentTarget);
 
-  const target = event.target;
+  const target = e.target;
 
   // const clickCardItem = (function () {
   //   const $modalContainer = document.querySelector(".modal_overlay");
@@ -47,9 +47,14 @@ document.querySelector('.content_container').onclick = ((event) => {
 
 });
 
-document.querySelector(".modal_overlay").onclick = ((event) => {
-  const target = event.target;
-  const currentTarget = event.currentTarget;
+
+/**
+ * ## modal window
+ *    
+ */
+document.querySelector(".modal_overlay").onclick = ((e) => {
+  const target = e.target;
+  const currentTarget = e.currentTarget;
 
   // console.log(target, currentTarget);
   if(target.classList.contains("modal_overlay")){
@@ -65,27 +70,32 @@ document.querySelector(".modal_overlay").onclick = ((event) => {
   }
 })
 
-
+document.querySelector("#modal_close").onclick=((target)=>{
+  const triggerFn = (() => {
+    const modalOverlay = document.querySelector(".modal_overlay");
   
+    return () => {
+      // debugger;
+      modalOverlay.style.display = 'none';
+    }
+  })();
 
+  triggerFn();
+})
 // (function () {
 //   const card_item = document.querySelectorAll("");
-
 //   return 
-
 // })()
-
-
 // window.onload = function () {
 // }
 
 
-/* 
-  # Description
-*/
-descriptionEditBtn.onclick = (event) => {
+/**
+ * # Description
+ */
+descriptionEditBtn.onclick = (e) => {
  console.log("### descriptionEditBtn");
- const click = (function(){
+ const triggerFn = (function(){
     const $modal_content_description_main_display = document.querySelector(".modal_content_description_main_display");
     const $description_edit = document.querySelector(".description_edit");
     const $description_edit_textarea = document.querySelector("#description_edit_textarea");
@@ -96,60 +106,44 @@ descriptionEditBtn.onclick = (event) => {
     }
   })();
 
-  click();
+  triggerFn();
 }
 
-description_edit_textarea.onblur = (event) => {
+description_edit_textarea.onblur = (e) => {
   console.log("### descriptionEditBtn > onfocusout");
-  const click = (function(){
+  const triggerFn = (function(){
      const $modal_content_description_main_display = document.querySelector(".modal_content_description_main_display");
      const $description_edit = document.querySelector(".description_edit");
 
      return () => {
        $modal_content_description_main_display.style.display = 'block';
        $description_edit.style.display = 'none';
-       $modal_content_description_main_display.querySelector("p").innerText = event.target.value;
+       $modal_content_description_main_display.querySelector("p").innerText = e.target.value;
      }
    })();
  
-   click();
+   triggerFn();
 }
 
-/* 
-  # sidebar addCard, ACTION 클릭시 dropdow layer
-*/
-/* 
-  1. create dropdown Layer container 
-  2. create dropdown layer content each button
-  3. position when click
-  */
-// const dropdownLayer = (() => {
-//   //  1. create dropdown Layer container 
-//   const $dropdownLayerContainer = document.createElement("div");
-//   $dropdownLayerContainer.style.cssText = `
-//     width: 100px;
-//     height: 100px;
-//     background-color: blue;
-//   `
-//   console.log($dropdownLayerContainer);
-//   //  2. create dropdown layer content each button
-//   $dropdownLayerContainer.innerText = "테스트";
-  
-//   return (event) => {
-//     console.log(event);
-//     return $dropdownLayerContainer;
-//   }
-// })();
+/**
+ *  # sidebar addCard, ACTION 클릭시 dropdow layer 
+ * 
+ *  # 전략
+ *   1. create dropdown Layer container 
+ *   2. create dropdown layer content each button
+ *   3. position when click
+ * 
+ */
 
-/* 
-  ## 고민
-  * 2가지 방법 고민
-    * 클릭한 button container에 넣는것과
-    * body tag 안에 특정 부분에 dropdown을 append 하는 방법
-  * dropdown layer 제거 할때 고민. 
-    * dropdown layer 영역이 아닐 때 제거 해야 한다. 
-    * 클릭 이벤트가 일어날때 dropdown layer가 있는 것을 확인 후 제거한다.  
-*/
+/**
+ * ## 고민
+ *   * 2가지 방법 고민
+ *     * 클릭한 button container에 넣는것과
+ *     * body tag 안에 특정 부분에 dropdown을 append 하는 방법
+ *   * dropdown layer 제거 할때 고민. 
+ *     * dropdown layer 영역이 아닐 때 제거 해야 한다. 
+ *     * 클릭 이벤트가 일어날때 dropdown layer가 있는 것을 확인 후 제거한다.  
+ */
 const createLabelUiComponent = () => {
   const $dropdownLayerContainer = document.querySelector("#dropdownLayerContainer")
   const dropdownLayerContainerSelector = "#dropdownLayerContainer"
@@ -162,79 +156,23 @@ const createLabelUiComponent = () => {
     {index: 5, color: "purple", label: "purple_tag!!!"},
   ]
 
-  const config = {dropdownLayerContainerSelector, data}
-  const labelUiInstance = new labelUi(config);
+  const config = {dropdownLayerContainerSelector, config: {data, options: { simpleSearch: true}}}
+  const labelComponentInst = new LabelComponent(config);
 // 
-  return labelUiInstance;
+  return labelComponentInst;
 }
 
 const dropdownLayerCbFn = (() => {
-  //  1. create dropdown Layer container 
   const $dropdownLayer = document.createElement("div");
-  $dropdownLayer.classList.add("dropdownLayer")
-  $dropdownLayer.style.cssText = `
-    min-height: 100px;
-    background-color: #fff;
-    border-radius: 3px;
-    color: #172b4d;
-    padding: 5px;
-    position: absolute;
-    z-index: 2000;
-  `;
-  //  2. create dropdown layer content each button
-  // $dropdownLayer.innerText = "테스트";
-  // console.log($dropdownLayer);
-  const $label = `
-    <div class="dl_title_container">
-      <span class="dl_title">Label</span>
-      <span>
-        <i class="fa fa-times" aria-hidden="true"></i>
-      </span>
-    </div>
-    <div class="dl_search_container">
-      <input id="dl_search_input" type="text" placeholder="Search labels...">
-    </div>
-    <div class="dl_labels_container">
-      <div class="dl_label_title">
-        <label>LABELS</label>
-      </div>
-      <div class="dl_label_item_container">
-        <label class="dl_label_item">태그1</label>
-        <i class="fa fa-pencil" aria-hidden="true"></i>
-      </div>
-      <div class="dl_label_item_container">
-        <label class="dl_label_item">태그2</label>
-        <i class="fa fa-pencil" aria-hidden="true"></i>
-      </div>
-      <div class="dl_label_item_container">
-        <label class="dl_label_item">태그3</label>
-        <i class="fa fa-pencil" aria-hidden="true"></i>
-      </div>
-      <div class="dl_label_item_container">
-        <label class="dl_label_item">태그4</label>
-        <i class="fa fa-pencil" aria-hidden="true"></i>
-      </div>
-      <div class="dl_label_item_container">
-        <label class="dl_label_item">태그5</label>
-        <i class="fa fa-pencil" aria-hidden="true"></i>
-      </div>
-    </div>
-    <div class="dl_add_label_container">
-      <input id="dl_add_label_input" type="text" placeholder="add labels...">
-    </div>
-    `
-  $dropdownLayer.innerHTML = $label;
   
-  return (event) => {
+  return (e) => {
     // if(event.target === previouseTraget) return;
-    const target = event.target;
+    const target = e.target;
     const datasetTitle = target.dataset.title;
-    const targetBoundingRect = event.target.getBoundingClientRect();
+    const targetBoundingRect = e.target.getBoundingClientRect();
     const targetWidth = targetBoundingRect.width;
-    const targetHeight = targetBoundingRect.height;
     const targetBottom = targetBoundingRect.bottom;
     const targetLeft = targetBoundingRect.left;
-
 
     clickedDropdownLayer = true;
     const $dropdownLayerContainer = document.querySelector("#dropdownLayerContainer")
@@ -244,49 +182,15 @@ const dropdownLayerCbFn = (() => {
         return;
       }
     }
-    
-    // const LabelUiComponent = createLabelUiComponent();
+
     this.LabelUiComponent = createLabelUiComponent();
+    // debugger;
+
     const $dropdownLayerComponent = this.LabelUiComponent.$dropdownLayer;
     $dropdownLayerComponent.style.width = targetWidth+100+"px";
     $dropdownLayerComponent.style.top = `${targetBottom+5}px`;
     $dropdownLayerComponent.style.left = `${targetLeft}px`
     $dropdownLayerComponent.dataset.title = datasetTitle;
-
-    // $dropdownLayer.style.width = targetWidth+100+"px";
-    // $dropdownLayer.style.top = `${targetBottom+5}px`;
-    // $dropdownLayer.style.left = `${targetLeft}px`
-    // $dropdownLayer.dataset.title = datasetTitle;
-
-    /* target child에 붙일때 */
-    // target.style.cssText = `
-    //   position: relative;
-    // `
-    // $dropdownLayerContainer.style.top = `${targetHeight+5}px`;
-    // $dropdownLayerContainer.style.left = 0 + "px";
-    /* dropdownLayer 전용 dom에 붙일 때 */
-    
-    // target.appendChild($dropdownLayerContainer);
- 
-    // $dropdownLayerContainer.appendChild($dropdownLayer);
-
-    // clickedDropdownLayer = true;
-    // const $dropdownLayer = document.querySelector("#dropdownLayer")
-    // if($dropdownLayer.hasChildNodes()){
-    //   if([...$dropdownLayer.children].some(v => v.dataset.title === datasetTitle)) return;
-    //   $dropdownLayer.innerHTML ='';
-    //   $dropdownLayer.appendChild($dropdownLayerContainer);
-
-    //   // [...$dropdownLayer.children].forEach((dropdownLayerEl,i)=>{
-    //   //   if(dropdownLayerEl.dataset.title === datasetTitle){
-    //   //     dropdownLayerEl.remove();
-    //   //     return;
-    //   //   } 
-    //   //   $dropdownLayer.appendChild($dropdownLayerContainer);
-    //   // })
-    // } else {
-    //   $dropdownLayer.appendChild($dropdownLayerContainer);
-    // }
   }
 })();
 
@@ -302,16 +206,20 @@ $action.forEach((el, _) =>{
 // document.getElementsByTagName("body").onclick = function(event){
 //   console.log("## body");;
 // }
-document.body.addEventListener('click', (event)=>{
-  console.log("## body");
-  const $dropdownLayerList = document.querySelectorAll(".dropdownLayer");
-  let target = event.target;
+document.body.addEventListener('click', (e)=>{
+  console.log("## body click event");
+  
+  let target = e.target;
   while(target && target.classList &&target.parentNode!=="BODY"){
     // if(!target.parentNode) return;
     if(target.classList.contains("dropdownLayer")) return     
     target = target.parentNode;
   }
-
+  
+  /**
+   * dropdown Layer 제거
+   */
+  const $dropdownLayerList = document.querySelectorAll(".dropdownLayer");
   $dropdownLayerList?.forEach(el => {
     if(clickedDropdownLayer) {
       clickedDropdownLayer = !clickedDropdownLayer;
@@ -321,7 +229,7 @@ document.body.addEventListener('click', (event)=>{
     el.remove();
   })
 
-  previouseTraget = event.target;
+  previouseTraget = e.target;
 })
 
 /* 
@@ -329,3 +237,130 @@ document.body.addEventListener('click', (event)=>{
   [] dropdown layer열린상태에서 modal overlay 클릭시 dropdown layer 우선 제거 
     ㄴ[] dropdown layer 닫힌 상태에서 다시 클릭시 modal 닫히기
 */
+
+/**
+ * body keyup event
+ * 
+ */
+document.body.addEventListener('keyup', (e)=>{
+  console.log("body > keypress", e);
+  const {target} = e;
+  
+  const triggerFn = (() => {
+    const modalOverlay = document.querySelector(".modal_overlay");
+    
+  
+    return () => {
+      // debugger;
+      if (e.key == "Escape") {
+        modalOverlay.style.display = 'none';
+      }
+    }
+  })();
+
+  triggerFn();
+  
+});
+
+
+// document.querySelectorAll("div.card_item:not(.add_card_item)")
+document.querySelectorAll(".card_contents_container").forEach((el, i) => {
+  [...el.children].forEach((el,i) => {
+    if(el.classList.contains("add_card_item")) return;
+    el.dataset.index = i;
+  });
+})
+
+document.querySelectorAll(".card_container").forEach( el => {
+  // const card_item = el.querySelector(".card_item");
+  // const card_item_text = el.querySelector(".card_item_text");
+  // const targetClass = el.classList;
+
+  el.ondrop = drop;
+  el.ondragover = allowDrop;
+  el.ondragstart = drag;
+
+  
+});
+document.querySelectorAll(".card_item_text").forEach( el => {
+  // el.ondragstart = drag;
+})
+
+document.querySelectorAll(".card_item").forEach( el => {
+  el.setAttribute("draggable", true);
+  el.ondragstart = drag;
+  el.ondrop = drop;
+  el.ondragover = allowDrop;
+})
+
+function drag(event) {
+  const {target} = event;
+  const targetClass = target.classList;
+
+  // if(targetClass.contains("card_item_text")){
+  if(targetClass.contains("card_item")){
+    console.log("# drag");
+    // const dragRandomNum = `R-${+new Date()}`
+    // event.target.classList.add(dragRandomNum);
+    event.dataTransfer.setData("dragOuterHTML", event.target.outerHTML);
+    event.dataTransfer.setData("dragIndex", event.target.dataset.index);
+  }
+};
+function drop(event) {
+  const {target} = event;
+  const targetClass = target.classList;
+
+  if(targetClass.contains("card_item")){
+    console.log("# drop");
+    const parentNode = event.target.parentNode;
+    const dropIndex = target.dataset.index;
+    
+    const dragOuterHTML = event.dataTransfer.getData("dragOuterHTML");
+    const dragIndex = event.dataTransfer.getData("dragIndex");
+
+    const $div = document.createElement("div")
+    $div.innerHTML = dragOuterHTML;
+    $div.childNodes[0].dataset.index = dropIndex;
+    event.target.outerHTML = $div.childNodes[0].outerHTML;
+
+    parentNode.replaceChild(event.target , parentNode.querySelector(`div[data-index='${dragIndex}']`))
+    
+    // drop el에 drag 추가
+    // const $div = document.createElement("div")
+    // $div.innerHTML = dragOuterHTML;
+    // $div.childNodes[0].dataset.index = dropIndex;
+    // event.target.outerHTML = $div.childNodes[0].outerHTML;
+
+    // // drag el 제거
+    // [...parentNode.children].filter(v => {
+      //   if(v.dataset.index === dragIndex){
+        //     v.remove();
+        //   }
+        // })
+        
+        
+    // this.dataset.index = dragIndex;
+    // drop 자리에 drag 추가
+
+    // if(parentNode.querySelectorAll("div.card_item:not(.add_card_item)").length !== +dragIndex){
+    //   parentNode.insertBefore(this, parentNode.querySelector(`div[data-index='${+dragIndex+1}']`))
+    // } else {
+    //   parentNode.insertBefore(this, parentNode.querySelector(`div[data-index='${+dragIndex-1}']`))
+    // }
+    
+    // document.querySelector(`.${dragRandomNum}`).outerHTML = dropOrigTarget.outerHTML;
+    // // document.querySelector(`.${dragRandomNum}`).classList.remove(`.${dragRandomNum}`)
+    event.stopPropagation();
+    event.preventDefault();
+  } 
+}
+function allowDrop(event) {
+  const {target} = event;
+  const targetClass = target.classList;
+
+  if(targetClass.contains("card_item")){
+    console.log("# allowDrop");
+    event.stopPropagation();
+    event.preventDefault();
+  } 
+}
