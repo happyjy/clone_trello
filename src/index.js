@@ -240,7 +240,6 @@ document.body.addEventListener('click', (e)=>{
 
 /**
  * body keyup event
- * 
  */
 document.body.addEventListener('keyup', (e)=>{
   console.log("body > keypress", e);
@@ -263,6 +262,11 @@ document.body.addEventListener('keyup', (e)=>{
 });
 
 
+/**
+ * # drag & drop
+ * 
+ * ## 문제 outerEl에만 drap, drop 이벤트를 잡으니 innerEl에 drop하니 이벤트를 감지 하지 못한다.
+ */
 // document.querySelectorAll("div.card_item:not(.add_card_item)")
 document.querySelectorAll(".card_contents_container").forEach((el, i) => {
   [...el.children].forEach((el,i) => {
@@ -270,27 +274,13 @@ document.querySelectorAll(".card_contents_container").forEach((el, i) => {
     el.dataset.index = i;
   });
 })
-
 document.querySelectorAll(".card_container").forEach( el => {
-  // const card_item = el.querySelector(".card_item");
-  // const card_item_text = el.querySelector(".card_item_text");
-  // const targetClass = el.classList;
-
   el.ondrop = drop;
   el.ondragover = allowDrop;
   el.ondragstart = drag;
-
-  
 });
-document.querySelectorAll(".card_item_text").forEach( el => {
-  // el.ondragstart = drag;
-})
-
 document.querySelectorAll(".card_item").forEach( el => {
   el.setAttribute("draggable", true);
-  el.ondragstart = drag;
-  el.ondrop = drop;
-  el.ondragover = allowDrop;
 })
 
 function drag(event) {
@@ -304,52 +294,31 @@ function drag(event) {
     // event.target.classList.add(dragRandomNum);
     event.dataTransfer.setData("dragOuterHTML", event.target.outerHTML);
     event.dataTransfer.setData("dragIndex", event.target.dataset.index);
+    event.dataTransfer.dropEffect = "move"
+    event.dataTransfer.dropAllowed = "move"
   }
 };
 function drop(event) {
   const {target} = event;
   const targetClass = target.classList;
 
-  if(targetClass.contains("card_item")){
+  if(targetClass.contains("card_item") || targetClass.contains("card_item_text")){
     console.log("# drop");
     const parentNode = event.target.parentNode;
     const dropIndex = target.dataset.index;
-    
     const dragOuterHTML = event.dataTransfer.getData("dragOuterHTML");
     const dragIndex = event.dataTransfer.getData("dragIndex");
 
+    // add drop el에 drag el
     const $div = document.createElement("div")
     $div.innerHTML = dragOuterHTML;
     $div.childNodes[0].dataset.index = dropIndex;
     event.target.outerHTML = $div.childNodes[0].outerHTML;
 
+    // replace drop el 자리에 drag el
+    event.target.dataset.index = dragIndex;
     parentNode.replaceChild(event.target , parentNode.querySelector(`div[data-index='${dragIndex}']`))
     
-    // drop el에 drag 추가
-    // const $div = document.createElement("div")
-    // $div.innerHTML = dragOuterHTML;
-    // $div.childNodes[0].dataset.index = dropIndex;
-    // event.target.outerHTML = $div.childNodes[0].outerHTML;
-
-    // // drag el 제거
-    // [...parentNode.children].filter(v => {
-      //   if(v.dataset.index === dragIndex){
-        //     v.remove();
-        //   }
-        // })
-        
-        
-    // this.dataset.index = dragIndex;
-    // drop 자리에 drag 추가
-
-    // if(parentNode.querySelectorAll("div.card_item:not(.add_card_item)").length !== +dragIndex){
-    //   parentNode.insertBefore(this, parentNode.querySelector(`div[data-index='${+dragIndex+1}']`))
-    // } else {
-    //   parentNode.insertBefore(this, parentNode.querySelector(`div[data-index='${+dragIndex-1}']`))
-    // }
-    
-    // document.querySelector(`.${dragRandomNum}`).outerHTML = dropOrigTarget.outerHTML;
-    // // document.querySelector(`.${dragRandomNum}`).classList.remove(`.${dragRandomNum}`)
     event.stopPropagation();
     event.preventDefault();
   } 
@@ -358,7 +327,7 @@ function allowDrop(event) {
   const {target} = event;
   const targetClass = target.classList;
 
-  if(targetClass.contains("card_item")){
+  if(targetClass.contains("card_item") || targetClass.contains("card_item_text")){
     console.log("# allowDrop");
     event.stopPropagation();
     event.preventDefault();
