@@ -140,7 +140,6 @@ body {
 
 .container {
   background-color: #cd5a91;
-  width: 100vw;
   height: 100vh;
 }
 
@@ -207,8 +206,11 @@ body {
 }
 
 .container .header_container_center a.hcc_home_container .hcc_home {
+  width: 90px;
   height: 24px;
-  width: 24px;
+  position: relative;
+  left: -38px;
+  top: -7px;
 }
 
 .container .header_container_center a.hcc_home_container .hcc_home::before {
@@ -222,7 +224,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 90px;
   height: 100%;
 }
 
@@ -475,9 +477,6 @@ body {
   border: 1px solid gray;
 }
 
-/* 
-  # 공통 styleing
-*/
 .card_link {
   cursor: pointer;
   text-decoration: underline;
@@ -554,9 +553,6 @@ body {
   background-color: #046AA6;
 }
 
-/* 
-  # modal 영역 styling
-*/
 .modal_open {
   display: block;
 }
@@ -948,11 +944,10 @@ body {
   font-weight: 600;
 }
 
-/* 
-  # content 영역 styling 
-*/
 .content_container {
   padding: 4px 8px 8px 8px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .content_container .content_container_items {
@@ -961,25 +956,7 @@ body {
   display: flex;
 }
 
-.content_container .card_item {
-  display: block;
-  background-color: #dfdfdf;
-  width: 256px;
-  border-radius: 3px;
-  padding: 7px;
-  margin: 7px;
-  /*  
-      ## [point] relative로 정렬하기 글자가 span tag 안에 중앙으로 안와서 설정함
-        ## ? 어떤 영향인지 확인해야함(글꼴?)
-    */
-}
-
-.content_container .card_item_text {
-  position: relative;
-  top: 1px;
-}
-
-.content_container .content_container_item {
+.content_container .content_container_items .content_container_item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -993,7 +970,7 @@ body {
   height: 100%;
 }
 
-.content_container .content_container_item .card_container .card_title {
+.content_container .content_container_items .content_container_item .card_container .card_title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1004,19 +981,27 @@ body {
   font-weight: 800;
 }
 
-.content_container .content_container_item .card_container .card_title:after {
+.content_container .content_container_items .content_container_item .card_container .card_title:after {
   cursor: pointer;
 }
 
-.content_container .content_container_item .card_container .card_title:after:hover {
+.content_container .content_container_items .content_container_item .card_container .card_title:after:hover {
   background-color: #8c8c8c;
 }
 
-.content_container .content_container_item .card_contents_container .card_item {
+.content_container .content_container_items .content_container_item .card_contents_container .card_item {
+  display: block;
+  background-color: #dfdfdf;
+  min-width: 256px;
+  border-radius: 3px;
+  padding: 7px;
+  margin: 7px;
+  /*  
+            ## [point] relative로 정렬하기 글자가 span tag 안에 중앙으로 안와서 설정함 ## ? 어떤 영향인지 확인해야함(글꼴?) */
   /* 
-          ## Beautiful CSS box-shadow example 
-            - [Beautiful CSS box-shadow example](https://getcssscan.com/css-box-shadow-examples)
-        */
+            ## Beautiful CSS box-shadow example 
+              - [Beautiful CSS box-shadow example](https://getcssscan.com/css-box-shadow-examples)
+          */
   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 1.5px 1.55px 2.6px;
           box-shadow: rgba(0, 0, 0, 0.2) 1.5px 1.55px 2.6px;
   display: -webkit-box;
@@ -1027,22 +1012,27 @@ body {
           justify-content: space-between;
 }
 
-.content_container .content_container_item .card_contents_container .card_item:not(:last-child):hover {
+.content_container .content_container_items .content_container_item .card_contents_container .card_item_text {
+  position: relative;
+  top: 1px;
+}
+
+.content_container .content_container_items .content_container_item .card_contents_container .card_item:not(:last-child):hover {
   background-color: #8c8c8c;
   cursor: pointer;
 }
 
-.content_container .content_container_item .card_contents_container .card_item:not(:last-child):hover:after {
+.content_container .content_container_items .content_container_item .card_contents_container .card_item:not(:last-child):hover:after {
   content: "";
   width: 24px;
   background: url(../images/pencil.svg);
   /* ## [point] rem의 활용 1
-                * 문자와 같이 사용하는 icon에 size를 같게 하기위해서 1rem을 사용하면 같은 크기를 사용할 수 있다. */
+                  * 문자와 같이 사용하는 icon에 size를 같게 하기위해서 1rem을 사용하면 같은 크기를 사용할 수 있다. */
   background-size: 1rem 1rem;
   background-repeat: no-repeat;
 }
 
-.content_container .content_container_item .card_contents_container .card_item:last-child {
+.content_container .content_container_items .content_container_item .card_contents_container .card_item:last-child {
   display: block;
   color: #5e6c84;
   background-color: #c9c9c9;
@@ -1050,30 +1040,31 @@ body {
           box-shadow: none;
 }
 
-.content_container .content_container_item .card_contents_container .card_item:last-child:before {
+.content_container .content_container_items .content_container_item .card_contents_container .card_item:last-child:before {
   /* 
-              ## ? css entities 
-            */
+                ## ? css entities 
+              */
   content: "\002B";
   background-color: inherit;
   margin-right: 5px;
 }
 
-.content_container .content_container_item .content_addListBtn_title {
+.content_container .content_container_items .content_container_item .content_addListBtn_title {
   display: block;
   color: #5e6c84;
+  min-width: 256px;
 }
 
-.content_container .content_container_item .content_addListBtn_title:before {
+.content_container .content_container_items .content_container_item .content_addListBtn_title:before {
   /* 
-          ## ? css entities 
-        */
+            ## ? css entities 
+          */
   content: "\002B";
   background-color: inherit;
   width: inherit;
 }
 
-.content_container .content_container_item:not(:last-child) {
+.content_container .content_container_items .content_container_item:not(:last-child) {
   margin-right: 6px;
 }
 
@@ -1100,12 +1091,6 @@ body {
   content: "\002B";
 }
 
-/* 
-  ## pencil 
-    * icon 사용하지 않고 "Pseudo-class"를 사용해서 icon 처럼 만들 수 있는것 사용
-    * dom을 붙여야 하므로 mouseover 했을때만 보이게 하려면 display: none을 사용해야 한다.
-
-*/
 .pencil {
   width: 10px;
   height: 50px;
@@ -1141,11 +1126,6 @@ body {
     * activity textarea 클릭시 textArea_option 나오도록 animation
   ## [!] codepen 정리하기
 */
-/* 
-  ## Use pseudo-selectors to trigger CSS transitions
-  [Use pseudo-selectors to trigger CSS transitions
-](https://openclassrooms.com/en/courses/5625816-create-modern-css-animations/5792421-use-pseudo-selectors-to-trigger-css-transitions)
-*/
 textarea:focus + .modal_content_activity_textArea_option {
   height: 40px;
   overflow: hidden;
@@ -1164,4 +1144,122 @@ textarea:focus + .modal_content_activity_textArea_option {
 textarea:focus,
 input:focus {
   outline: 0;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  right: 0px;
+  margin: 0;
+  padding: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.sidenav_header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  border-bottom: 1px #fff solid;
+  padding-bottom: 15px;
+  /* 
+      ## [?]closebtn &times; 버튼 중앙 정렬 하는 방법을 다시 확인해볼 필요있음
+    */
+}
+
+.sidenav_header .sidenav_title {
+  color: #fff;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.sidenav_header .sidenav_closebtn {
+  position: absolute;
+  right: 15px;
+  top: -3px;
+  font-size: 2rem;
+  text-decoration: none;
+  color: #818181;
+  height: 100%;
+}
+
+.sidenav_contents {
+  padding: 32px 0px 0px 0px;
+  width: 300px;
+}
+
+.sidenav_contents .sidenav_content {
+  cursor: pointer;
+}
+
+.sidenav_contents .sidenav_content .background_color {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #cd5a91;
+  border-radius: 3px;
+}
+
+.sidenav_contents .sidenav_content .background_color_title {
+  display: inline-block;
+  vertical-align: 7%;
+}
+
+.sidenav_contents div {
+  padding: 15px 10px 15px 10px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.sidenav_contents div:hover:not(.sidenav_closebtn):not(.active) {
+  background-color: #f1f1f1;
+  color: #111;
+}
+
+.sidenav #search {
+  display: none;
+}
+
+.sidenav #search .sidenav_header i {
+  position: absolute;
+  left: 15px;
+  top: 0px;
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: #818181;
+  height: 100%;
+  cursor: pointer;
+}
+
+.sidenav #main {
+  display: none;
+}
+
+.container {
+  -webkit-transition: margin-right .5s;
+  transition: margin-right .5s;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
 }

@@ -232,11 +232,11 @@ document.body.addEventListener('click', (e)=>{
   previouseTraget = e.target;
 })
 
-/* 
-  [] dropdown layer 밖영역 클릭시 layer 우선 제거 
-  [] dropdown layer열린상태에서 modal overlay 클릭시 dropdown layer 우선 제거 
-    ㄴ[] dropdown layer 닫힌 상태에서 다시 클릭시 modal 닫히기
-*/
+/**
+ * [x] dropdown layer 밖영역 클릭시 layer 우선 제거 
+ * [x] dropdown layer열린상태에서 modal overlay 클릭시 dropdown layer 우선 제거 
+ *  ㄴ[x] dropdown layer 닫힌 상태에서 다시 클릭시 modal 닫히기 
+ */
 
 /**
  * body keyup event
@@ -246,14 +246,37 @@ document.body.addEventListener('keyup', (e)=>{
   const {target} = e;
   
   const triggerFn = (() => {
-    const modalOverlay = document.querySelector(".modal_overlay");
+    const $modalOverlay = document.querySelector(".modal_overlay");
+    const $sidenav = document.querySelector(".sidenav")
+    const $container = document.querySelector(".container");
     
-  
     return () => {
-      // debugger;
-      if (e.key == "Escape") {
-        modalOverlay.style.display = 'none';
+      switch (e.key) {
+        case "Escape":
+          $modalOverlay.style.display = 'none';
+          break;
+        case "f":
+          /**
+           * ## sidenav가 생길때 .container margin right가 생길때 card item width도 같이 줄어 들수는 없나? 
+           *  * flex관련해서 나중에 알아줘야 할 것같은데...
+           */
+          const width = "300px";
+          if($sidenav.style.width == width){
+            $sidenav.style.width = "0";
+            $sidenav.style.padding = "0px"
+            $container.style.marginRight = "0";
+          } else {
+            $sidenav.style.width = width;
+            $sidenav.style.padding = "10px"
+            $container.style.marginRight = width;
+          }
+
+          break;
+      
+        default:
+          break;
       }
+
     }
   })();
 
@@ -269,6 +292,8 @@ document.body.addEventListener('keyup', (e)=>{
  */
 // document.querySelectorAll("div.card_item:not(.add_card_item)")
 document.querySelectorAll(".card_contents_container").forEach((el, i) => {
+  el.dataset.index = i;
+
   [...el.children].forEach((el,i) => {
     if(el.classList.contains("add_card_item")) return;
     el.dataset.index = i;
@@ -285,14 +310,13 @@ document.querySelectorAll(".card_item").forEach( el => {
 
 function drag(event) {
   const {target} = event;
+  const outerEl = target.parentNode;
   const targetClass = target.classList;
 
-  // if(targetClass.contains("card_item_text")){
   if(targetClass.contains("card_item")){
     console.log("# drag");
-    // const dragRandomNum = `R-${+new Date()}`
-    // event.target.classList.add(dragRandomNum);
     event.dataTransfer.setData("dragOuterHTML", event.target.outerHTML);
+    event.dataTransfer.setData("dragOuterIndex", outerEl.dataset.index);
     event.dataTransfer.setData("dragIndex", event.target.dataset.index);
     event.dataTransfer.dropEffect = "move"
     event.dataTransfer.dropAllowed = "move"
@@ -307,6 +331,7 @@ function drop(event) {
     const parentNode = event.target.parentNode;
     const dropIndex = target.dataset.index;
     const dragOuterHTML = event.dataTransfer.getData("dragOuterHTML");
+    const dragOuterIndex = event.dataTransfer.getData("dragOuterIndex");
     const dragIndex = event.dataTransfer.getData("dragIndex");
 
     // add drop el에 drag el
@@ -317,8 +342,10 @@ function drop(event) {
 
     // replace drop el 자리에 drag el
     event.target.dataset.index = dragIndex;
-    parentNode.replaceChild(event.target , parentNode.querySelector(`div[data-index='${dragIndex}']`))
-    
+    const dragEl = document.querySelector(`div.card_contents_container[data-index='${dragOuterIndex}'] div[data-index='${dragIndex}']`)
+    // parentNode.replaceChild(event.target , dragEl);
+    document.querySelector(`div.card_contents_container[data-index='${dragOuterIndex}']`).replaceChild(event.target, dragEl)
+
     event.stopPropagation();
     event.preventDefault();
   } 
@@ -333,3 +360,51 @@ function allowDrop(event) {
     event.preventDefault();
   } 
 }
+
+/**
+ * # sidenav_content
+ */
+document.querySelectorAll(".sidenav_content").forEach((el, i) => {
+  const $sidenavContainerList = document.querySelectorAll(".sidenav_container");
+
+  el.onclick = (e) => {
+    console.log('sidenav_content(side 메뉴)', e);
+    console.log('$sidenavContainerList', $sidenavContainerList);
+    const sideMenuIndex = e.currentTarget.dataset.index;
+
+    [...$sidenavContainerList].forEach((e,i)=>{
+      if(e.dataset.index === sideMenuIndex){
+        e.style.display='block';
+      } else {
+        e.style.display='none';
+      }
+    })
+  }
+})
+
+document.querySelectorAll("#sidenav_back_home").forEach((el, i)=>{
+  const $sidenavContainerList = document.querySelectorAll(".sidenav_container");
+  const $homeIndex = document.querySelector("#sidenav_main");
+  el.onclick = (e) => {
+    [...$sidenavContainerList].forEach((e,i)=>{
+      if(e.dataset.index === $homeIndex.dataset.index){
+        e.style.display='block';
+      } else {
+        e.style.display='none';
+      }
+    })
+  }
+})
+
+
+document.querySelectorAll(".sidenav_closebtn").forEach((el, i) => {
+  const $sidenavMostOuter = document.querySelector(".sidenav");
+  const $sidenavContainerList = document.querySelectorAll(".sidenav_container");
+  el.onclick = (e) => {
+    $sidenavMostOuter.style.width = "0px";
+    $sidenavMostOuter.style.right = "-20px";
+    [...$sidenavContainerList].forEach((e,i)=>{
+      e.style.display='none';
+    })
+  }
+})

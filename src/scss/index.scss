@@ -46,7 +46,9 @@ $font: rgb(238, 238, 238);
 $font1: #172b4d;
 $font2: #5e6c84;
 
-// dropdown Layer
+
+
+// ## dropdown Layer styling
 .dropdownLayer {
   display: flex;
   flex-direction: column;
@@ -190,11 +192,7 @@ $font2: #5e6c84;
 
 }
 
-
-/* 
-  # 공통 styleing
-*/
-
+// ## 공통 styling
 .card_link {
   cursor: pointer;
   text-decoration: underline;
@@ -280,9 +278,7 @@ $font2: #5e6c84;
   }
 }
 
-/* 
-  # modal 영역 styling
-*/
+// ## modal 영역 styling
 .modal_open {
   display: block;
 }
@@ -733,154 +729,149 @@ $font2: #5e6c84;
   }
 }
 
-/* 
-  # content 영역 styling 
-*/
-
+// ## content 영역 styling 
 .content_container {
   padding: 4px 8px 8px 8px;
   // height: 100vh;
+  flex-wrap: wrap;
 
   .content_container_items {
     display: flex;
-  }
 
-  .card_item {
+    .content_container_item {
+      display: flex;
+      flex-direction: column;
+      // align-items: flex-start;
+      background-color: $cardBg;
+      color: $font1;
+      border-radius: 3px;
+      height: 100%;
 
-    display: block;
-    background-color: $cardBg1;
-    // background-color: red;
-    width: 256px;
-    border-radius: 3px;
-    padding: 7px;
-    margin: 7px;
+      .card_container {
 
-    /*  
-      ## [point] relative로 정렬하기 글자가 span tag 안에 중앙으로 안와서 설정함
-        ## ? 어떤 영향인지 확인해야함(글꼴?)
-    */
-    &_text {
-      position: relative;
-      top: 1px;
-    }
-  }
+        .card_title {
+          display: flex;
+          justify-content: space-between;
+          padding: 13px 10px 0 15px;
+          font-weight: 800;
 
-  .content_container_item {
-    display: flex;
-    flex-direction: column;
-    // align-items: flex-start;
-    background-color: $cardBg;
-    color: $font1;
-    border-radius: 3px;
-    height: 100%;
+          &:after {
+            // content: "\B7\B7\B7";  // * \B7: middle dot
+            cursor: pointer;
 
-    .card_container {
-
-      .card_title {
-        display: flex;
-        justify-content: space-between;
-        padding: 13px 10px 0 15px;
-        font-weight: 800;
-
-        &:after {
-          // content: "\B7\B7\B7";  // * \B7: middle dot
-          cursor: pointer;
-
-          &:hover {
-            background-color: $cardBg2;
+            &:hover {
+              background-color: $cardBg2;
+            }
           }
         }
       }
-    }
 
-    .card_contents_container {
-      &>* {
-        // background-color: $cardBg1;
-        // width: 256px;
-        // border-radius: 3px;
-        // padding: 7px;
-        // margin: 7px;
-      }
+      .card_contents_container {
+        &>* {
+          // background-color: $cardBg1;
+          // width: 256px;
+          // border-radius: 3px;
+          // padding: 7px;
+          // margin: 7px;
+        }
 
-      .card_item {
+        .card_item {
 
-        // background-color: $cardBg1;
-        // width: 256px;
-        // border-radius: 3px;
-        // padding: 7px;
-        // margin: 7px;
-        /* 
-          ## Beautiful CSS box-shadow example 
-            - [Beautiful CSS box-shadow example](https://getcssscan.com/css-box-shadow-examples)
-        */
-        box-shadow: rgba(0, 0, 0, 0.2) 1.5px 1.55px 2.6px;
+          display: block;
+          background-color: $cardBg1;
+          // background-color: red;
+          min-width: 256px;
+          // min-width: 256px;
+          // max-width: 256px;
+          border-radius: 3px;
+          padding: 7px;
+          margin: 7px;
 
-        display: flex;
-        justify-content: space-between;
+          /*  
+            ## [point] relative로 정렬하기 글자가 span tag 안에 중앙으로 안와서 설정함 ## ? 어떤 영향인지 확인해야함(글꼴?) */
+          &_text {
+            position: relative;
+            top: 1px;
+          }
+
+          /* 
+            ## Beautiful CSS box-shadow example 
+              - [Beautiful CSS box-shadow example](https://getcssscan.com/css-box-shadow-examples)
+          */
+          box-shadow: rgba(0, 0, 0, 0.2) 1.5px 1.55px 2.6px;
+
+          display: flex;
+          justify-content: space-between;
 
 
-        &:not(:last-child) {
-          &:hover {
-            background-color: $cardBg2;
-            cursor: pointer;
+          &:not(:last-child) {
+            &:hover {
+              background-color: $cardBg2;
+              cursor: pointer;
 
-            &:after {
-              content: "";
-              width: 24px;
-              background: url(../images/pencil.svg);
-              /* ## [point] rem의 활용 1
-                * 문자와 같이 사용하는 icon에 size를 같게 하기위해서 1rem을 사용하면 같은 크기를 사용할 수 있다. */
-              // background-color: $cardBg3;
-              background-size: 1rem 1rem;
-              background-repeat: no-repeat;
+              &:after {
+                content: "";
+                width: 24px;
+                background: url(../images/pencil.svg);
+                /* ## [point] rem의 활용 1
+                  * 문자와 같이 사용하는 icon에 size를 같게 하기위해서 1rem을 사용하면 같은 크기를 사용할 수 있다. */
+                // background-color: $cardBg3;
+                background-size: 1rem 1rem;
+                background-repeat: no-repeat;
+              }
+            }
+          }
+
+          &:last-child {
+            // box-shadow: none;
+            display: block;
+            color: $font2;
+            background-color: $cardBg;
+            box-shadow: none;
+
+            &:before {
+              /* 
+                ## ? css entities 
+              */
+              // display: inline-block;
+              content: "\002B";
+              background-color: inherit;
+              margin-right: 5px;
+              // width: inherit;
+              // padding-right: 10px;
             }
           }
         }
 
-        &:last-child {
-          // box-shadow: none;
-          display: block;
-          color: $font2;
-          background-color: $cardBg;
-          box-shadow: none;
+      }
 
-          &:before {
-            /* 
-              ## ? css entities 
-            */
-            // display: inline-block;
-            content: "\002B";
-            background-color: inherit;
-            margin-right: 5px;
-            // width: inherit;
-            // padding-right: 10px;
-          }
+      .content_addListBtn_title {
+        display: block;
+        color: $font2;
+        min-width: 256px;
+
+        &:before {
+          /* 
+            ## ? css entities 
+          */
+          // display: inline-block;
+          content: "\002B";
+          background-color: inherit;
+          width: inherit;
+          // padding-right: 10px;
         }
       }
 
-    }
-
-    .content_addListBtn_title {
-      display: block;
-      color: $font2;
-
-      &:before {
-        /* 
-          ## ? css entities 
-        */
-        // display: inline-block;
-        content: "\002B";
-        background-color: inherit;
-        width: inherit;
-        // padding-right: 10px;
+      &:not(:last-child) {
+        margin-right: 6px;
       }
     }
 
-
-    &:not(:last-child) {
-      margin-right: 6px;
-    }
   }
+
+
+
+
 
   .content_addListBtn {
     padding: 10px;
@@ -911,14 +902,9 @@ $font2: #5e6c84;
 }
 
 
-/* 
-  ## pencil 
-    * icon 사용하지 않고 "Pseudo-class"를 사용해서 icon 처럼 만들 수 있는것 사용
-    * dom을 붙여야 하므로 mouseover 했을때만 보이게 하려면 display: none을 사용해야 한다.
-
-*/
-
-
+// ## pencil 
+//  * icon 사용하지 않고 "Pseudo-class"를 사용해서 icon 처럼 만들 수 있는것 사용
+//  * dom을 붙여야 하므로 mouseover 했을때만 보이게 하려면 display: none을 사용해야 한다.
 .pencil {
   width: 10px;
   height: 50px;
@@ -949,17 +935,13 @@ $font2: #5e6c84;
   }
 }
 
-
+// ## activity focus시 option 영역 보이게 animation
+// ## Use pseudo-selectors to trigger CSS transitions
+//   * [Use pseudo-selectors to trigger CSS transitions](https://openclassrooms.com/en/courses/5625816-create-modern-css-animations/5792421-use-pseudo-selectors-to-trigger-css-transitions)
 /* 
   ## activity animation 
     * activity textarea 클릭시 textArea_option 나오도록 animation
   ## [!] codepen 정리하기
-*/
-
-/* 
-  ## Use pseudo-selectors to trigger CSS transitions
-  [Use pseudo-selectors to trigger CSS transitions
-](https://openclassrooms.com/en/courses/5625816-create-modern-css-animations/5792421-use-pseudo-selectors-to-trigger-css-transitions)
 */
 textarea:focus+.modal_content_activity_textArea_option {
   height: 40px;
@@ -980,12 +962,133 @@ input:focus {
   outline: 0;
 }
 
-// .card_item {
-//   // z-index: 1000;
-// }
 
-// .card_item_text {
-//   // background-color: #147dba;
-//   border: 1px solid #172b4d;
-//   // z-index: 1001;
-// }
+// ## sidenav
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  right: 0px;
+  margin: 0;
+  padding: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  // padding: 10px;
+  transition: 0.5s;
+
+  &_header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    border-bottom: 1px #fff solid;
+    padding-bottom: 15px;
+
+    .sidenav_title {
+      color: #fff;
+      font-weight: 400;
+      font-size: 1.5rem;
+    }
+
+    /* 
+      ## [?]closebtn &times; 버튼 중앙 정렬 하는 방법을 다시 확인해볼 필요있음
+    */
+    .sidenav_closebtn {
+      position: absolute;
+      right: 15px;
+      top: -3px;
+      font-size: 2rem;
+      text-decoration: none;
+      color: #818181;
+      height: 100%;
+    }
+  }
+
+  &_contents {
+    padding: 32px 0px 0px 0px;
+    width: 300px;
+
+    .sidenav_content {
+      cursor: pointer;
+
+      .background_color {
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        background-color: $bg;
+        border-radius: 3px;
+      }
+
+      .background_color_title {
+        display: inline-block;
+        // line-height: -10%;
+        vertical-align: 7%;
+      }
+    }
+
+    & div {
+      // &:not(:last-child) {
+      // }
+
+      padding: 15px 10px 15px 10px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+
+      // &.active {
+      //   background-color: #04AA6D;
+      //   color: white;
+      // }
+
+      &:hover {
+
+        // &:not(.sidenav_closebtn):not(.active) {
+        &:not(.sidenav_closebtn):not(.active) {
+          background-color: #f1f1f1;
+          color: #111;
+        }
+      }
+    }
+  }
+}
+
+.sidenav #search {
+  display: none;
+
+  .sidenav_header {
+    & i {
+      // background-color: #046AA6;
+      position: absolute;
+      left: 15px;
+      top: 0px;
+      font-size: 1.3rem;
+      text-decoration: none;
+      color: #818181;
+      height: 100%;
+      cursor: pointer;
+    }
+  }
+}
+
+.sidenav #main {
+  display: none;
+}
+
+.container {
+  transition: margin-right .5s;
+  // padding: 20px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
+}

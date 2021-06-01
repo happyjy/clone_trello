@@ -17,7 +17,6 @@
 
 <body>
   <!-- <div id="app"></div> -->
-
   <div class="container">
     <!-- <div class="body-container"> -->
     <div class="header_container">
@@ -391,8 +390,45 @@
         </div>
       </div>
     </div>
-    <div id="dropdownLayerContainer" style="z-index: 2000;"></div>
+
+  </div> <!-- //end .container  -->
+
+  <div id="dropdownLayerContainer" style="z-index: 2000;"></div>
+  <div class="sidenav">
+    <div id="sidenav_main" class="sidenav_container" data-index="00">
+      <div class="sidenav_header">
+        <span class="sidenav_title">Menu</span>
+        <a href="javascript:void(0)" class="sidenav_closebtn" onclick="closeNav()">&times;</a>
+      </div>
+      <div class="sidenav_contents">
+        <div class="sidenav_content" data-index="0">
+          <i class="fa fa-info" aria-hidden="true"></i>
+          <span>About this card</span>
+        </div>
+        <div class="sidenav_content" data-index="1">
+          <span class="background_color"></span>
+          <span class="background_color_title">change background</span>
+        </div>
+        <div class="sidenav_content" data-index="2">
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <span>search cards</span>
+        </div>
+        <div class="sidenav_content" data-index="3">
+          <i class="fa fa-sticky-note-o" aria-hidden="true"></i>
+          <span>Stckers</span>
+        </div>
+      </div>
+    </div>
+    <div id="search" class="sidenav_container" data-index="2">
+      <div class="sidenav_header">
+        <i id="sidenav_back_home" class="fa fa-chevron-left" aria-hidden="true"></i>
+        <span class="sidenav_title">search</span>
+        <a href="javascript:void(0)" class="sidenav_closebtn" onclick="closeNav()">&times;</a>
+      </div>
+    </div>
   </div>
+
+  <script src="./sidenav.js"></script>
   <script src="./InstantSearchComponent.js"></script>
   <script src="./LabelComponent.js"></script>
   <script src="./index.js"></script>

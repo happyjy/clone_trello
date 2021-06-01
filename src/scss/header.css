@@ -5,7 +5,6 @@ body {
 
 .container {
   background-color: #cd5a91;
-  width: 100vw;
   height: 100vh;
 }
 
@@ -72,8 +71,14 @@ body {
 }
 
 .container .header_container_center a.hcc_home_container .hcc_home {
+  width: 90px;
   height: 24px;
-  width: 24px;
+  /* 
+            [?] position말고 Trello 로고 정 중아에 맞출 수 있는 방법 없을까? 
+          */
+  position: relative;
+  left: -38px;
+  top: -7px;
 }
 
 .container .header_container_center a.hcc_home_container .hcc_home::before {
@@ -87,7 +92,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 90px;
   height: 100%;
 }
 

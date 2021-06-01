@@ -12,7 +12,7 @@ body {
 .container {
   background-color: $bg;
 
-  width: 100vw;
+  // width: 100%;
   height: 100vh;
 
   // .body-container {
@@ -82,11 +82,15 @@ body {
 
 
       a.hcc_home_container {
-
         .hcc_home {
+          width: 90px;
           height: 24px;
-          width: 24px;
-
+          /* 
+            [?] position말고 Trello 로고 정 중아에 맞출 수 있는 방법 없을까? 
+          */
+          position: relative;
+          left: -38px;
+          top: -7px;
 
           &::before {
             opacity: 0.5;
@@ -99,7 +103,7 @@ body {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
+            width: 90px;
             height: 100%;
           }
         }
@@ -125,34 +129,34 @@ body {
         //   width: 2rem;
         //   height: 2rem;
 
-          // padding: 10px;
-          // .profile_name {
-          //   /* 
-          //     ## ? 문자가 원 중앙이 맞지 않음 
-          //       * trello 참고해보자.
-          //   */
-          //   display: inline-block;
-          //   border-radius: 50%;
-          //   color: black;
-          //   width: 100%;
-          //   height: 100%;
-          //   text-align: center;
-          //   background-color: $bg3;
-          //   font-weight: 600;
+        // padding: 10px;
+        // .profile_name {
+        //   /* 
+        //     ## ? 문자가 원 중앙이 맞지 않음 
+        //       * trello 참고해보자.
+        //   */
+        //   display: inline-block;
+        //   border-radius: 50%;
+        //   color: black;
+        //   width: 100%;
+        //   height: 100%;
+        //   text-align: center;
+        //   background-color: $bg3;
+        //   font-weight: 600;
 
-          //   display: inline-flex;
-          //   justify-content: center;
-          //   align-items: center;
-          //   // display: flex;
-          //   // justify-content: center;
+        //   display: inline-flex;
+        //   justify-content: center;
+        //   align-items: center;
+        //   // display: flex;
+        //   // justify-content: center;
 
-          //   // margin-top: auto;
-          //   // margin-bottom: auto;
-          //   &_text {
-          //     position: relative;
-          //     top: 3px;
-          //   }
-          // }
+        //   // margin-top: auto;
+        //   // margin-bottom: auto;
+        //   &_text {
+        //     position: relative;
+        //     top: 3px;
+        //   }
+        // }
         // }
       }
     }
