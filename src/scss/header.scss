@@ -132,7 +132,7 @@ body {
         // padding: 10px;
         // .profile_name {
         //   /* 
-        //     ## ? 문자가 원 중앙이 맞지 않음 
+        //     ## [?] 문자가 원 중앙이 맞지 않음 
         //       * trello 참고해보자.
         //   */
         //   display: inline-block;
@@ -180,7 +180,7 @@ body {
     align-items: center;
     padding: 0 7px;
     /* 
-      ## ? header_container_left_item 아이콘과 높이를 같게 하려면 어떻게 해야할까?
+      ## [?] header_container_left_item 아이콘과 높이를 같게 하려면 어떻게 해야할까?
     */
     min-height: 2rem;
     height: 34px;
@@ -209,14 +209,14 @@ body {
 
     &_item {
       /* 
-        ## ? vertical-align: center;
+        ## [?] vertical-align: center;
         글자 중앙 정렬 
       */
       border-radius: 3px;
 
       &:not(:last-child) {
         /* 
-            ## ? last 빼고 margin-right 주기 
+            ## [?] last 빼고 margin-right 주기 
               * 하위 selector 중이 아니라 
               * 선택된 selector 중에서 last-child 적용됨.
           */
@@ -250,7 +250,7 @@ body {
 
         &::before {
           background: red;
-          /* ## ? before 포함하기 */
+          /* ## [?] before 포함하기 */
           display: inline-block;
           content: "\B7\B7\B7";
           background-color: $bg1;

@@ -8,15 +8,15 @@
 }
 
 /* 
-.modal_overlay
-  ㄴ.modal_content_container
-    ㄴ.modal_header
-    ㄴ.modal_content
-    ㄴ.modal_sidebar
+  .modal_overlay
+    ㄴ.modal_content_container
+      ㄴ.modal_header
+      ㄴ.modal_content
+      ㄴ.modal_sidebar
 */
 
 /* 
-  ## ? 폰트가 전체적으로 위로 올라가서 이걸 해결해주려면 font 관련 내용을 찾아봐야겠다.s
+  ## [?] 폰트가 전체적으로 위로 올라가서 이걸 해결해주려면 font 관련 내용을 찾아봐야겠다.s
 */
 $bg: #cd5a91;
 $bg1: #DA83AB;
@@ -201,7 +201,7 @@ $font2: #5e6c84;
 .profile_container {
   /* 
     ## flex item이 width가 2rem 만큼 적용안돼서 추가 
-    ## ? 왜그런지 확인하기
+    ## [?] 왜그런지 확인하기
       * [stackoverflow](https://stackoverflow.com/a/21413841/3937115)
       
       * 해결방법1
@@ -226,7 +226,7 @@ $font2: #5e6c84;
 
   .profile_name {
     /* 
-      ## ? 문자가 원 중앙이 맞지 않음 
+      ## [?] 문자가 원 중앙이 맞지 않음 
         * trello 참고해보자.
     */
     display: inline-block;
@@ -299,7 +299,7 @@ $font2: #5e6c84;
   /*
     moadal 임시
   */
-  // display: flex;
+  //   display: flex;
   // justify-content: center;
   // align-items: center;
 
@@ -358,6 +358,10 @@ $font2: #5e6c84;
           display: flex;
           justify-content: space-between;
           font-weight: 600;
+
+          #modal_close {
+            cursor: pointer;
+          }
         }
 
         .modal_header_card_Type {
@@ -366,7 +370,6 @@ $font2: #5e6c84;
         }
       }
     }
-
 
     .modal_content {
       /* 
@@ -570,7 +573,6 @@ $font2: #5e6c84;
                     }
 
                     &:not(:last-child) {
-
                       margin-right: 10px;
                     }
                   }
@@ -580,7 +582,38 @@ $font2: #5e6c84;
           }
         }
 
+        .fetchLoading {
+          &:after {
+            content: "roading...";
+            width: 100%;
+            // border: 1px solid black;
+            display: block;
+            text-align: center;
+            padding: 29px;
+            box-sizing: border-box;
+            animation: blinker 1s linear;
+            /* 
+              ## [REVIEW...][codepen...] animation - .w3schools
+                * [animation - .w3schools](https://www.w3schools.com/css/css3_animations.asp)
+            */
+          }
+
+          @keyframes blinker {
+            50% {
+              opacity: 0;
+            }
+          }
+        }
+
         .modal_content_activity_reply_container {
+          max-height: 400px;
+          overflow: scroll;
+
+          /* 
+            ## [REVIEW...] box-sizing: border-box;
+              * [box-sizing](https://www.w3schools.com/cssref/css3_pr_box-sizing.asp)
+          */
+
 
           .reply_container {
             display: flex;
@@ -788,7 +821,7 @@ $font2: #5e6c84;
           margin: 7px;
 
           /*  
-            ## [point] relative로 정렬하기 글자가 span tag 안에 중앙으로 안와서 설정함 ## ? 어떤 영향인지 확인해야함(글꼴?) */
+            ## [point] relative로 정렬하기 글자가 span tag 안에 중앙으로 안와서 설정함 ## [?] 어떤 영향인지 확인해야함(글꼴?) */
           &_text {
             position: relative;
             top: 1px;
@@ -831,7 +864,7 @@ $font2: #5e6c84;
 
             &:before {
               /* 
-                ## ? css entities 
+                ## [?] css entities 
               */
               // display: inline-block;
               content: "\002B";
@@ -852,7 +885,7 @@ $font2: #5e6c84;
 
         &:before {
           /* 
-            ## ? css entities 
+            ## [?] css entities 
           */
           // display: inline-block;
           content: "\002B";
@@ -883,14 +916,14 @@ $font2: #5e6c84;
     border-radius: 3px;
 
     /* 
-      ## ? 반복되는 selector mixin 사용해서 재활용 해보기.
+      ## [?] 반복되는 selector mixin 사용해서 재활용 해보기.
     */
     .content_addListBtn_title {
       color: $font;
 
       &:before {
         /* 
-          ## ? css entities 
+          ## [?] css entities 
         */
         // display: inline-block;
         content: "\002B";
@@ -941,7 +974,7 @@ $font2: #5e6c84;
 /* 
   ## activity animation 
     * activity textarea 클릭시 textArea_option 나오도록 animation
-  ## [!] codepen 정리하기
+  ## [codepen...] codepen 정리하기
 */
 textarea:focus+.modal_content_activity_textArea_option {
   height: 40px;
@@ -949,7 +982,7 @@ textarea:focus+.modal_content_activity_textArea_option {
 }
 
 /* 
-  ## ? display: table-column에 대해서 확인 하기
+  ## [?] display: table-column에 대해서 확인 하기
 */
 .modal_content_activity_textArea_option {
   height: 0px;

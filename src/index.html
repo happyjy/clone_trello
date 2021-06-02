@@ -16,7 +16,7 @@
 </head>
 
 <body>
-  <!-- <div id="app"></div> -->
+
   <div class="container">
     <!-- <div class="body-container"> -->
     <div class="header_container">
@@ -153,12 +153,13 @@
               ## [ ] awesome icon 적용하기
              -->
             <i class="fas fa-file-medical"></i>
-
           </div>
         </div>
       </div>
     </div>
-    <!-- </div> -->
+    <!-- </div>  -->
+    <!-- end .container  -->
+
     <div class="modal_overlay">
       <div class="modal_content_container clearfix">
         <div class="modal_header">
@@ -220,17 +221,17 @@
                   </div>
                 </div>
                 <!--
-                  ## 참고
-                    * [stackoverflow](https://stackoverflow.com/questions/10186913/html5-textarea-placeholder-not-appearing)
+                ## 참고
+                  * [stackoverflow](https://stackoverflow.com/questions/10186913/html5-textarea-placeholder-not-appearing)
 
-                  # good
-                  <textarea></textarea> 
-                  
-                  # bad - 태그안에 newline이 들어간것으로 인지한다.(그래서 placeholder가 보이지 않는다.)
-                  <textarea>                                      
-                  </textarea> 
+                # good
+                <textarea></textarea> 
+                
+                # bad - 태그안에 newline이 들어간것으로 인지한다.(그래서 placeholder가 보이지 않는다.)
+                <textarea>                                      
+                </textarea> 
 
-                 -->
+              -->
                 <!-- cols="30" -->
                 <div class="modal_content_activity_textArea_container">
                   <textarea name="" id="" rows="1" dir="auto" placeholder="Wrtie a comment..."></textarea>
@@ -265,112 +266,116 @@
               </div>
             </div>
             <div class="modal_content_activity_reply_container">
-              <div class="reply_container">
-                <div class="profile_container">
-                  <div class="profile_name">
-                    <span class="profile_name_text">JY</span>
-                  </div>
-                </div>
-                <div class="reply_content_container">
-                  <div class="reply_content_title">
-                    <span class="reply_content_title_writer">Jaeyoon Yoon</span>
-                    <span class="reply_content_title_date">42 minutes ago</span>
-                  </div>
-                  <div class="reply_content">
-                    <div class="reply_content_box">댓글을 작성했습니다.</div>
-                    <div class="reply_content_edit" style="display: none;">
-                      <textarea name="" id="" cols="30" rows="10">댓글을 작성했습니다.</textarea>
-                      <div class="reply_content_edit">
-                        <div class="reply_content_edit_left">
-                          <span>save</span>
-                          <span>X</span>
-                        </div>
-                        <div class="reply_content_edit_right">
-                          <span>icon1</span>
-                          <span>icon2</span>
-                          <span>icon3</span>
-                          <span>icon4</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="reply_content_reply_modify_container">
-                    <span class="reply_edit card_link">edit</span>
-                    <span class="reply_delete card_link">delete</span>
-                  </div>
+              <div id="modal_fetchMore_loading"></div>
+            </div>
+
+            <!-- <div class="reply_container">
+              <div class="profile_container">
+                <div class="profile_name">
+                  <span class="profile_name_text">JY</span>
                 </div>
               </div>
-              <div class="reply_container">
-                <div class="profile_container">
-                  <div class="profile_name">
-                    <span class="profile_name_text">JY</span>
-                  </div>
+              <div class="reply_content_container">
+                <div class="reply_content_title">
+                  <span class="reply_content_title_writer">Jaeyoon Yoon</span>
+                  <span class="reply_content_title_date">42 minutes ago</span>
                 </div>
-                <div class="reply_content_container">
-                  <div class="reply_content_title">
-                    <span class="reply_content_title_writer">Jaeyoon Yoon</span>
-                    <span class="reply_content_title_date">42 minutes ago</span>
-                  </div>
-                  <div class="reply_content">
-                    <div class="reply_content_box">back to basic</div>
-                    <div class="reply_content_edit" style="display: none;">
-                      <textarea name="" id="" cols="30" rows="10">더 잘하고 싶다.</textarea>
-                      <div class="reply_content_edit">
-                        <div class="reply_content_edit_left">
-                          <span>save</span>
-                          <span>X</span>
-                        </div>
-                        <div class="reply_content_edit_right">
-                          <span>icon1</span>
-                          <span>icon2</span>
-                          <span>icon3</span>
-                          <span>icon4</span>
-                        </div>
+                <div class="reply_content">
+                  <div class="reply_content_box">댓글을 작성했습니다.</div>
+                  <div class="reply_content_edit" style="display: none;">
+                    <textarea name="" id="" cols="30" rows="10">댓글을 작성했습니다.</textarea>
+                    <div class="reply_content_edit">
+                      <div class="reply_content_edit_left">
+                        <span>save</span>
+                        <span>X</span>
+                      </div>
+                      <div class="reply_content_edit_right">
+                        <span>icon1</span>
+                        <span>icon2</span>
+                        <span>icon3</span>
+                        <span>icon4</span>
                       </div>
                     </div>
                   </div>
-                  <div class="reply_content_reply_modify_container">
-                    <span class="reply_edit card_link">edit</span>
-                    <span class="reply_delete card_link">delete</span>
-                  </div>
                 </div>
-              </div>
-              <div class="reply_container">
-                <div class="profile_container">
-                  <div class="profile_name">
-                    <span class="profile_name_text">JY</span>
-                  </div>
-                </div>
-                <div class="reply_content_container">
-                  <div class="reply_content_title">
-                    <span class="reply_content_title_writer">Jaeyoon Yoon</span>
-                    <span class="reply_content_title_date">42 minutes ago</span>
-                  </div>
-                  <div class="reply_content">
-                    <div class="reply_content_box">밝습니다.</div>
-                    <div class="reply_content_edit" style="display: none;">
-                      <textarea name="" id="" cols="30" rows="10">미래가 밝습니다.</textarea>
-                      <div class="reply_content_edit">
-                        <div class="reply_content_edit_left">
-                          <span>save</span>
-                          <span>X</span>
-                        </div>
-                        <div class="reply_content_edit_right">
-                          <span>icon1</span>
-                          <span>icon2</span>
-                          <span>icon3</span>
-                          <span>icon4</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="reply_content_reply_modify_container">
-                    <span class="reply_edit card_link">edit</span>
-                    <span class="reply_delete card_link">delete</span>
-                  </div>
+                <div class="reply_content_reply_modify_container">
+                  <span class="reply_edit card_link">edit</span>
+                  <span class="reply_delete card_link">delete</span>
                 </div>
               </div>
             </div>
+            <div class="reply_container">
+              <div class="profile_container">
+                <div class="profile_name">
+                  <span class="profile_name_text">JY</span>
+                </div>
+              </div>
+              <div class="reply_content_container">
+                <div class="reply_content_title">
+                  <span class="reply_content_title_writer">Jaeyoon Yoon</span>
+                  <span class="reply_content_title_date">42 minutes ago</span>
+                </div>
+                <div class="reply_content">
+                  <div class="reply_content_box">back to basic</div>
+                  <div class="reply_content_edit" style="display: none;">
+                    <textarea name="" id="" cols="30" rows="10">더 잘하고 싶다.</textarea>
+                    <div class="reply_content_edit">
+                      <div class="reply_content_edit_left">
+                        <span>save</span>
+                        <span>X</span>
+                      </div>
+                      <div class="reply_content_edit_right">
+                        <span>icon1</span>
+                        <span>icon2</span>
+                        <span>icon3</span>
+                        <span>icon4</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="reply_content_reply_modify_container">
+                  <span class="reply_edit card_link">edit</span>
+                  <span class="reply_delete card_link">delete</span>
+                </div>
+              </div>
+            </div>
+            <div class="reply_container">
+              <div class="profile_container">
+                <div class="profile_name">
+                  <span class="profile_name_text">JY</span>
+                </div>
+              </div>
+              <div class="reply_content_container">
+                <div class="reply_content_title">
+                  <span class="reply_content_title_writer">Jaeyoon Yoon</span>
+                  <span class="reply_content_title_date">42 minutes ago</span>
+                </div>
+                <div class="reply_content">
+                  <div class="reply_content_box">밝습니다.</div>
+                  <div class="reply_content_edit" style="display: none;">
+                    <textarea name="" id="" cols="30" rows="10">미래가 밝습니다.</textarea>
+                    <div class="reply_content_edit">
+                      <div class="reply_content_edit_left">
+                        <span>save</span>
+                        <span>X</span>
+                      </div>
+                      <div class="reply_content_edit_right">
+                        <span>icon1</span>
+                        <span>icon2</span>
+                        <span>icon3</span>
+                        <span>icon4</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="reply_content_reply_modify_container">
+                  <span class="reply_edit card_link">edit</span>
+                  <span class="reply_delete card_link">delete</span>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- <div id="modal_fetchMore_loading"></div> -->
           </div>
         </div>
         <div class="modal_sidebar">
@@ -387,13 +392,13 @@
             <div class="action modal_box" data-title="archive">Archive</div>
             <div class="action modal_box" data-title="share">Share</div>
           </div>
-        </div>
+        </div><!-- end .modal_sidebar -->
       </div>
-    </div>
-
-  </div> <!-- //end .container  -->
+    </div> <!-- end .modal_overlay -->
+  </div> <!-- end .container  -->
 
   <div id="dropdownLayerContainer" style="z-index: 2000;"></div>
+
   <div class="sidenav">
     <div id="sidenav_main" class="sidenav_container" data-index="00">
       <div class="sidenav_header">
@@ -428,6 +433,8 @@
     </div>
   </div>
 
+  <script src="./common.js"></script>
+  <script src="./dummydata.js"></script>
   <script src="./sidenav.js"></script>
   <script src="./InstantSearchComponent.js"></script>
   <script src="./LabelComponent.js"></script>
