@@ -140,7 +140,7 @@ body {
 
 .container {
   background-color: #cd5a91;
-  height: 100vh;
+  height: 100%;
 }
 
 .container .header_container {
@@ -992,16 +992,47 @@ body {
   font-weight: 600;
 }
 
-.content_container {
-  padding: 4px 8px 8px 8px;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+body {
+  height: 100vh;
 }
 
-.content_container .content_container_items {
+.container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.content_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 4px 8px 8px 8px;
+  height: 100%;
+  /* 
+  [review] 문제1: inner flex height 100% 하면 outer 영역보다 더 벗어난다.
+  div.outer
+    div.inner1 flex적용 
+    div.inner2 flex적용
+    div.inner3 flex적용 + height 100%
+  
+    => div.inner3 height100% 하니 div.inner1,2 영역을 차지한것 만큼 div.outer영역을 벗어나도록 css 연산 처리가 되어 있다. 
+
+    => 해결방법 div.outer에 display: flex, flex-direction: column;을 해서 div.inner1,2,3 영역이 div.outer 영역안에서 잡히게 된다.
+  문제2: flex가 height시 background 가 길게된다.
+    ㄴ background-color 적용 위치 조절
+  */
+}
+
+.content_container .content_container_items {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow-y: scroll;
 }
 
 .content_container .content_container_items .content_container_item {
@@ -1012,10 +1043,15 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: #c9c9c9;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   color: #172b4d;
   border-radius: 3px;
-  height: 100%;
+}
+
+.content_container .content_container_items .content_container_item .card_container {
+  background-color: #c9c9c9;
 }
 
 .content_container .content_container_items .content_container_item .card_container .card_title {
@@ -1121,7 +1157,7 @@ body {
   background-color: #DA83AB;
   max-width: 264px;
   width: 100%;
-  height: 100%;
+  height: 30px !important;
   border-radius: 3px;
   /* 
       ## [?] 반복되는 selector mixin 사용해서 재활용 해보기.

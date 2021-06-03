@@ -573,6 +573,7 @@ $font2: #5e6c84;
                     }
 
                     &:not(:last-child) {
+
                       margin-right: 10px;
                     }
                   }
@@ -762,25 +763,57 @@ $font2: #5e6c84;
   }
 }
 
+body {
+  height: 100vh;
+  // border: 5px blue solid;
+}
+
+.container {
+  // border: 5px bisque solid;
+  display: flex;
+  flex-direction: column;
+}
+
 // ## content 영역 styling 
 .content_container {
+  // border: 10px red solid;
+  display: flex;
+  // flex-direction: column;
+  // flex-wrap: wrap;
   padding: 4px 8px 8px 8px;
+  height: 100%;
   // height: 100vh;
-  flex-wrap: wrap;
 
+  /* 
+  [review] 문제1: inner flex height 100% 하면 outer 영역보다 더 벗어난다.
+  div.outer
+    div.inner1 flex적용 
+    div.inner2 flex적용
+    div.inner3 flex적용 + height 100%
+  
+    => div.inner3 height100% 하니 div.inner1,2 영역을 차지한것 만큼 div.outer영역을 벗어나도록 css 연산 처리가 되어 있다. 
+
+    => 해결방법 div.outer에 display: flex, flex-direction: column;을 해서 div.inner1,2,3 영역이 div.outer 영역안에서 잡히게 된다.
+  문제2: flex가 height시 background 가 길게된다.
+    ㄴ background-color 적용 위치 조절
+  */
   .content_container_items {
+    // border: 2px purple solid;
+    height: 100%;
     display: flex;
+    overflow-y: scroll;
 
     .content_container_item {
+      // border: 2px yellow solid;
       display: flex;
       flex-direction: column;
-      // align-items: flex-start;
-      background-color: $cardBg;
+      align-items: flex-start;
       color: $font1;
       border-radius: 3px;
-      height: 100%;
+      // height: 100%;
 
       .card_container {
+        background-color: $cardBg;
 
         .card_title {
           display: flex;
@@ -902,17 +935,13 @@ $font2: #5e6c84;
 
   }
 
-
-
-
-
   .content_addListBtn {
     padding: 10px;
     background-color: $bg1;
     // background-color: $cardBg;
     max-width: 264px;
     width: 100%;
-    height: 100%;
+    height: 30px !important;
     border-radius: 3px;
 
     /* 
@@ -931,7 +960,6 @@ $font2: #5e6c84;
       }
     }
   }
-
 }
 
 
