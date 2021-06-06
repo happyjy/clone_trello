@@ -33,11 +33,11 @@ const renderReply = async (page) => {
   const getRandomSeconds = () => (Math.round(Math.random() * 5) + 1) * 250;
 
   const promiseResult = new Promise((resolve, reject) => {
-    setTimeout(()=>{
+    setTimeout(() => {
       resolve(getReplyDummyData(page));
-    // }, getRandomSeconds())
+      // }, getRandomSeconds())
     }, 2000)
-  })        
+  })
 
   /* 
     # [IMPORTANT!][REVIEW...] aync-await with promise
@@ -65,7 +65,7 @@ const renderReply = async (page) => {
       * [!] 이때 CPU 리소스가 낭비 되지 안는다. 왜냐하면 JS엔진은 scripts, event를 수행 할 수 있기 때문이다. 
       * [!] 그 증거로 setTimeout에 의해서 loading bar가 보일 때 event handler가 동작하는것을 확인 할 수 있습니다.
   */
-  await promiseResult.then((replyDataList)=>{
+  await promiseResult.then((replyDataList) => {
     const $modal_content_activity_reply_container = document.querySelector(".modal_content_activity_reply_container");
     // [...$modal_content_activity_reply_container.children].forEach(v => {
     //   if(v.id !== "modal_fetchMore_loading"){
@@ -83,7 +83,12 @@ const renderReply = async (page) => {
 
 } // end: renderReply
 
-const renderReplyTemplate = ({profile,writer,date,reply}) => {
+const renderReplyTemplate = ({
+  profile,
+  writer,
+  date,
+  reply
+}) => {
   const tempDiv = document.createElement("div");
   const replyTemplate = `
   <div class="reply_container">
@@ -135,7 +140,7 @@ const renderReplyTemplate = ({profile,writer,date,reply}) => {
       * element.insertAdjacentHTML(position, text);
   */
 
-  
+
   /* 
     ## [REVIEW]Element.append(), Node.appendChild() 차이
       [Element.append() - mdn](https://developer.mozilla.org/en-US/docs/Web/API/Element/append)
@@ -172,7 +177,7 @@ $card_items.forEach((card_item, _) => {
     // console.log("### replyDummyData: ", replyDummyData);
     // console.log("### replyTemplate: ", replyTemplate);
 
-    
+
     // var $fragmentEl = document.createDocumentFragment();
     // $fragmentEl.innerHTML = replyTemplate;
     // $modal_content_activity_reply_container.appendChild(replyTemplate);
@@ -202,7 +207,7 @@ $card_items.forEach((card_item, _) => {
     // 1. 첫번째 laoding
     // 2. 스롤롤 끝 도달 -> loading 
     // 3. fetching again
-    const replyTemplate = getReplyDummyData().map((v,i) => {
+    const replyTemplate = getReplyDummyData().map((v, i) => {
       return `
         <div class="reply_container">
         <div class="profile_container">
@@ -251,24 +256,24 @@ document.querySelector(".modal_overlay").onclick = ((e) => {
   const currentTarget = e.currentTarget;
 
   // console.log(target, currentTarget);
-  if(target.classList.contains("modal_overlay")){
+  if (target.classList.contains("modal_overlay")) {
     const $dropdownLayerContainer = document.querySelector("#dropdownLayerContainer");
 
     // modal_overlay 제거하기 전에 dropdownLayer가 있다면 layer우선 제거(modal-window 닫히지 않음)
-    if($dropdownLayerContainer.hasChildNodes()){
-      $dropdownLayerContainer.innerHTML ='';
+    if ($dropdownLayerContainer.hasChildNodes()) {
+      $dropdownLayerContainer.innerHTML = '';
       return;
     }
-    
+
     target.style.display = 'none';
     deleteReplyList();
   }
 })
 
-document.querySelector("#modal_close").onclick=((target)=>{
+document.querySelector("#modal_close").onclick = ((target) => {
   const triggerFn = (() => {
     const modalOverlay = document.querySelector(".modal_overlay");
-  
+
     return () => {
       modalOverlay.style.display = 'none';
       deleteReplyList();
@@ -284,8 +289,16 @@ const onScroll = (e) => {
     # [review] size and scroll 
       * [size and scroll - mdn](https://javascript.info/size-and-scroll)
   */
-  const { clientHeight, scrollTop, scrollHeight } = e.target;
-  console.log({clientHeight, scrollTop, scrollHeight});
+  const {
+    clientHeight,
+    scrollTop,
+    scrollHeight
+  } = e.target;
+  console.log({
+    clientHeight,
+    scrollTop,
+    scrollHeight
+  });
   if (clientHeight + scrollTop === scrollHeight) {
     /* 
       # clientHeight, scrollTop, scrollHeight의 의미
@@ -307,7 +320,7 @@ const deleteReplyList = (() => {
 
   return () => {
     [...$modal_content_activity_reply_container.children].forEach(v => {
-      if(v.id !== "modal_fetchMore_loading"){
+      if (v.id !== "modal_fetchMore_loading") {
         v.remove();
       }
     });
@@ -318,8 +331,8 @@ const deleteReplyList = (() => {
  * # Description 기능
  */
 descriptionEditBtn.onclick = (e) => {
- console.log("### descriptionEditBtn");
- const triggerFn = (function(){
+  console.log("### descriptionEditBtn");
+  const triggerFn = (function () {
     const $modal_content_description_main_display = document.querySelector(".modal_content_description_main_display");
     const $description_edit = document.querySelector(".description_edit");
     const $description_edit_textarea = document.querySelector("#description_edit_textarea");
@@ -334,18 +347,18 @@ descriptionEditBtn.onclick = (e) => {
 }
 description_edit_textarea.onblur = (e) => {
   console.log("### descriptionEditBtn > onfocusout");
-  const triggerFn = (function(){
-     const $modal_content_description_main_display = document.querySelector(".modal_content_description_main_display");
-     const $description_edit = document.querySelector(".description_edit");
+  const triggerFn = (function () {
+    const $modal_content_description_main_display = document.querySelector(".modal_content_description_main_display");
+    const $description_edit = document.querySelector(".description_edit");
 
-     return () => {
-       $modal_content_description_main_display.style.display = 'block';
-       $description_edit.style.display = 'none';
-       $modal_content_description_main_display.querySelector("p").innerText = e.target.value;
-     }
-   })();
- 
-   triggerFn();
+    return () => {
+      $modal_content_description_main_display.style.display = 'block';
+      $description_edit.style.display = 'none';
+      $modal_content_description_main_display.querySelector("p").innerText = e.target.value;
+    }
+  })();
+
+  triggerFn();
 }
 /**
  *  # sidebar addCard, ACTION 클릭시 dropdow layer 기능
@@ -369,23 +382,50 @@ const createLabelUiComponent = () => {
   const $dropdownLayerContainer = document.querySelector("#dropdownLayerContainer")
   const dropdownLayerContainerSelector = "#dropdownLayerContainer"
 
-  const data = [
-    {index: 1, color: "green", label: "green_tag!!!"},
-    {index: 2, color: "yellow", label: "yellow_tag!!!"},
-    {index: 3, color: "scarlet", label: "scarlet_tag!!!"},
-    {index: 4, color: "red", label: "red_tag!!!"},
-    {index: 5, color: "purple", label: "purple_tag!!!"},
+  const data = [{
+      index: 1,
+      color: "green",
+      label: "green_tag!!!"
+    },
+    {
+      index: 2,
+      color: "yellow",
+      label: "yellow_tag!!!"
+    },
+    {
+      index: 3,
+      color: "scarlet",
+      label: "scarlet_tag!!!"
+    },
+    {
+      index: 4,
+      color: "red",
+      label: "red_tag!!!"
+    },
+    {
+      index: 5,
+      color: "purple",
+      label: "purple_tag!!!"
+    },
   ]
 
-  const config = {dropdownLayerContainerSelector, config: {data, options: { simpleSearch: true}}}
+  const config = {
+    dropdownLayerContainerSelector,
+    config: {
+      data,
+      options: {
+        simpleSearch: true
+      }
+    }
+  }
   const labelComponentInst = new LabelComponent(config);
-// 
+  // 
   return labelComponentInst;
 }
 
 const dropdownLayerCbFn = (() => {
   const $dropdownLayer = document.createElement("div");
-  
+
   return (e) => {
     // if(event.target === previouseTraget) return;
     const target = e.target;
@@ -397,9 +437,9 @@ const dropdownLayerCbFn = (() => {
 
     clickedDropdownLayer = true;
     const $dropdownLayerContainer = document.querySelector("#dropdownLayerContainer")
-    if($dropdownLayerContainer.hasChildNodes()){
-      if([...$dropdownLayerContainer.children].some(v => v.dataset.title === datasetTitle)) {
-        $dropdownLayerContainer.innerHTML ='';
+    if ($dropdownLayerContainer.hasChildNodes()) {
+      if ([...$dropdownLayerContainer.children].some(v => v.dataset.title === datasetTitle)) {
+        $dropdownLayerContainer.innerHTML = '';
         return;
       }
     }
@@ -408,40 +448,40 @@ const dropdownLayerCbFn = (() => {
     // debugger;
 
     const $dropdownLayerComponent = this.LabelUiComponent.$dropdownLayer;
-    $dropdownLayerComponent.style.width = targetWidth+100+"px";
+    $dropdownLayerComponent.style.width = targetWidth + 100 + "px";
     $dropdownLayerComponent.style.top = `${targetBottom+5}px`;
     $dropdownLayerComponent.style.left = `${targetLeft}px`
     $dropdownLayerComponent.dataset.title = datasetTitle;
   }
 })();
 
-$addCard.forEach((el, _) =>{
+$addCard.forEach((el, _) => {
   //  3. position when click
   el.onclick = dropdownLayerCbFn;
 })
-$action.forEach((el, _) =>{
+$action.forEach((el, _) => {
   //  3. position when click
   el.onclick = dropdownLayerCbFn;
-}) 
+})
 
 /**
  * # body click event
  * # dropdown Layer 제거 기능
  */
-document.body.addEventListener('click', (e)=>{
+document.body.addEventListener('click', (e) => {
   let target = e.target;
-  while(target && target.classList &&target.parentNode!=="BODY"){
+  while (target && target.classList && target.parentNode !== "BODY") {
     // if(!target.parentNode) return;
-    if(target.classList.contains("dropdownLayer")) return     
+    if (target.classList.contains("dropdownLayer")) return
     target = target.parentNode;
   }
-  
+
   /**
    * dropdown Layer 제거 기능
    */
   const $dropdownLayerList = document.querySelectorAll(".dropdownLayer");
-  $dropdownLayerList?.forEach(el => {
-    if(clickedDropdownLayer) {
+  $dropdownLayerList ? .forEach(el => {
+    if (clickedDropdownLayer) {
       clickedDropdownLayer = !clickedDropdownLayer;
       // if(el.dataset.title === event.target.dataset.title) el.remove();
       return;
@@ -460,15 +500,17 @@ document.body.addEventListener('click', (e)=>{
 /**
  * body keyup event
  */
-document.body.addEventListener('keyup', (e)=>{
+document.body.addEventListener('keyup', (e) => {
   console.log("body > keypress", e);
-  const {target} = e;
-  
+  const {
+    target
+  } = e;
+
   const triggerFn = (() => {
     const $modalOverlay = document.querySelector(".modal_overlay");
     const $sidenav = document.querySelector(".sidenav")
     const $container = document.querySelector(".container");
-    
+
     return () => {
       switch (e.key) {
         case "Escape":
@@ -480,7 +522,7 @@ document.body.addEventListener('keyup', (e)=>{
            *  * flex관련해서 나중에 알아줘야 할 것같은데...
            */
           const width = "300px";
-          if($sidenav.style.width == width){
+          if ($sidenav.style.width == width) {
             $sidenav.style.width = "0";
             $sidenav.style.padding = "0px"
             $container.style.marginRight = "0";
@@ -491,7 +533,7 @@ document.body.addEventListener('keyup', (e)=>{
           }
 
           break;
-      
+
         default:
           break;
       }
@@ -500,7 +542,7 @@ document.body.addEventListener('keyup', (e)=>{
   })();
 
   triggerFn();
-  
+
 });
 
 
@@ -513,26 +555,28 @@ document.body.addEventListener('keyup', (e)=>{
 document.querySelectorAll(".card_contents_container").forEach((el, i) => {
   el.dataset.index = i;
 
-  [...el.children].forEach((el,i) => {
-    if(el.classList.contains("add_card_item")) return;
+  [...el.children].forEach((el, i) => {
+    if (el.classList.contains("add_card_item")) return;
     el.dataset.index = i;
   });
 })
-document.querySelectorAll(".card_container").forEach( el => {
+document.querySelectorAll(".card_container").forEach(el => {
   el.ondrop = drop;
   el.ondragover = allowDrop;
   el.ondragstart = drag;
 });
-document.querySelectorAll(".card_item").forEach( el => {
+document.querySelectorAll(".card_item").forEach(el => {
   el.setAttribute("draggable", true);
 })
 
 function drag(event) {
-  const {target} = event;
+  const {
+    target
+  } = event;
   const outerEl = target.parentNode;
   const targetClass = target.classList;
 
-  if(targetClass.contains("card_item")){
+  if (targetClass.contains("card_item")) {
     console.log("# drag");
     event.dataTransfer.setData("dragOuterHTML", event.target.outerHTML);
     event.dataTransfer.setData("dragOuterIndex", outerEl.dataset.index);
@@ -541,11 +585,14 @@ function drag(event) {
     event.dataTransfer.dropAllowed = "move"
   }
 };
+
 function drop(event) {
-  const {target} = event;
+  const {
+    target
+  } = event;
   const targetClass = target.classList;
 
-  if(targetClass.contains("card_item") || targetClass.contains("card_item_text")){
+  if (targetClass.contains("card_item") || targetClass.contains("card_item_text")) {
     console.log("# drop");
     const parentNode = event.target.parentNode;
     const dropIndex = target.dataset.index;
@@ -567,17 +614,20 @@ function drop(event) {
 
     event.stopPropagation();
     event.preventDefault();
-  } 
+  }
 }
+
 function allowDrop(event) {
-  const {target} = event;
+  const {
+    target
+  } = event;
   const targetClass = target.classList;
 
-  if(targetClass.contains("card_item") || targetClass.contains("card_item_text")){
+  if (targetClass.contains("card_item") || targetClass.contains("card_item_text")) {
     console.log("# allowDrop");
     event.stopPropagation();
     event.preventDefault();
-  } 
+  }
 }
 
 /**
@@ -587,7 +637,7 @@ document.querySelector(".header_menu").onclick = (e) => {
   const $sidenav = document.querySelector(".sidenav")
   const $container = document.querySelector(".container");
   const width = "300px";
-  
+
   $sidenav.style.width = width;
   $sidenav.style.padding = "10px"
   $container.style.marginRight = width;
@@ -600,24 +650,24 @@ document.querySelectorAll(".sidenav_content").forEach((el, i) => {
     console.log('$sidenavContainerList', $sidenavContainerList);
     const sideMenuIndex = e.currentTarget.dataset.index;
 
-    [...$sidenavContainerList].forEach((e,i)=>{
-      if(e.dataset.index === sideMenuIndex){
-        e.style.display='block';
+    [...$sidenavContainerList].forEach((e, i) => {
+      if (e.dataset.index === sideMenuIndex) {
+        e.style.display = 'block';
       } else {
-        e.style.display='none';
+        e.style.display = 'none';
       }
     })
   }
 })
-document.querySelectorAll("#sidenav_back_home").forEach((el, i)=>{
+document.querySelectorAll("#sidenav_back_home").forEach((el, i) => {
   const $sidenavContainerList = document.querySelectorAll(".sidenav_container");
   const $homeIndex = document.querySelector("#sidenav_main");
   el.onclick = (e) => {
-    [...$sidenavContainerList].forEach((e,i)=>{
-      if(e.dataset.index === $homeIndex.dataset.index){
-        e.style.display='block';
+    [...$sidenavContainerList].forEach((e, i) => {
+      if (e.dataset.index === $homeIndex.dataset.index) {
+        e.style.display = 'block';
       } else {
-        e.style.display='none';
+        e.style.display = 'none';
       }
     })
   }
@@ -631,8 +681,8 @@ document.querySelectorAll(".sidenav_closebtn").forEach((el, i) => {
     $sidenav.style.padding = "0px"
     $container.style.marginRight = "0";
 
-    [...$sidenavContainerList].forEach((e,i)=>{
-      e.style.display='none';
+    [...$sidenavContainerList].forEach((e, i) => {
+      e.style.display = 'none';
     })
   }
 })

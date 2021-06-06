@@ -1,4 +1,4 @@
-Date.prototype.addDays = function(days) {
+Date.prototype.addDays = function (days) {
   var date = new Date(this.valueOf());
   date.setDate(days + date.getDate());
   return date;
