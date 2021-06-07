@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 
+      # 마진 중복(병합)
+        > 마진의 특정 값들이 '중복'되어 합쳐지는 현상
+        > '마진 중복'은 버그, 오류가 아니다. 
+        > 현상을 우회하거나 응용할 수 있다.
+
+        * 중복 1. 형제 요소들의 margin-top과 margin-bottom이 만났을 때 
+        * 중복 2. 부모 요소의 margin-top과 자식 요소의 margin-top이 만났을 때 
+        * 중복 3. 부모 요소의 margin-bottom과 자식 요소의 margin-bottom이 만났을 때 
+   -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .outer {
+      background-color: aquamarine;
+      width: 300px;
+      height: 300px;
+
+      position: relative;
+    }
+
+    .inner {
+      background-color: brown;
+      width: 50px;
+      height: 50px;
+      margin: 25px;
+      /* float: left; */
+    }
+
+    .outer>.inner {
+      position: absolute;
+      top: 0;
+    }
+
+    article {
+      background-color: aqua;
+
+    }
+
+    i {
+      background-color: whitesmoke;
+    }
+  </style>
+  <div class="outer">
+    <!-- 
+      * 중복 1. 형제 요소들의 margin-top과 margin-bottom이 만났을 때
+        - 마진이 25px이 적용되서 div.inner 사이 간격이 50px이 아니라 병합 되어 25px이 됐다.
+      -->
+    <!-- 
+      * 중복 2. 부모 요소의 margin-top과 자식 요소의 margin-top이 만났을 때 
+        - div.inner에만 마진을 적용했지만 부모 el div.outer도 적용되었다.
+      -->
+
+    <div class="inner">1</div>
+    <div class="inner">2</div>
+    <div class="inner">3</div>
+
+    <article>123</article>
+    <i>123</i>
+
+</body>
+</div>
+
+</html>

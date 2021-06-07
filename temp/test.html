@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <!-- 
+      # 마진 중복(병합)
+        > 마진의 특정 값들이 '중복'되어 합쳐지는 현상
+        > '마진 중복'은 버그, 오류가 아니다. 
+        > 현상을 우회하거나 응용할 수 있다.
+
+        * 중복 1. 형제 요소들의 margin-top과 margin-bottom이 만났을 때 
+        * 중복 2. 부모 요소의 margin-top과 자식 요소의 margin-top이 만났을 때 
+        * 중복 3. 부모 요소의 margin-bottom과 자식 요소의 margin-bottom이 만났을 때 
+   -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      img {
+        width: 20px;
+        height: 20px;
+      }
+
+      div {
+        box-sizing: border-box;
+        width: 100px;
+        padding: 5px;
+        border: 1px solid black;
+      }
+    </style>
+
+    <em style="border: 1px solid">123</em>
+    <p style="border: 1px solid">23</p>
+    <ul style="border: 1px solid">3</ul>
+    <button style="border: 1px solid">4</button>
+  </body>
+
+  </html>
+</body>
+
+</html>

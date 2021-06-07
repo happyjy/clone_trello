@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="">
+</head>
+
+<body>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .outer {
+      background-color: bisque;
+      width: 100%;
+    }
+
+    .items1 {
+      float: left;
+    }
+
+    .items1 img {
+      width: 2rem;
+      height: 2rem;
+      /* [POINT2] img tag 사용했을때 아래에 공간이 비는 것을 해결하기 위함 */
+      display: block;
+    }
+
+    .items1 .item1 {
+      border: 1px red solid;
+      border: 1px red solid;
+    }
+
+    .items2 {}
+
+    .items2 .item2 {
+      border: 1px blue solid;
+
+      float: left;
+    }
+
+    /* [POINT1] */
+    .clearfix::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+  </style>
+  <div class="outer">
+    <!-- [POINT1] .clearfix를 해주지 않으면 1: .items 영역이 .outer 안으로 들어오지 않는다.  -->
+    <!-- [POINT1] .clearfix를 해주지 않으면 2: outer의 배경이 없어진다 .items1, .items2의 속성이 outer영역을 모두 떠버리기 때문이다.  -->
+    <div class="items1 clearfix">
+      <!-- <div class="item1">float test</div> -->
+      <img src="./menu.svg" class="cross" alt="메뉴" aria-hidden="true" />
+    </div>
+    <div class="items2 clearfix">
+      <div class="item2">1</div>
+      <div class="item2">2</div>
+      <div class="item2">3</div>
+      <div class="item2">4</div>
+      <div class="item2">5</div>
+    </div>
+    <!-- <div> float test </div> -->
+  </div>
+
+  <!-- 
+      # Emmet 문법
+        * .container>ul.list>li.list-item*10>a{list$} 
+  -->
+  <div class="container">
+    <ul class="list">
+      <li class="list-item"><a href="">list1</a></li>
+      <li class="list-item"><a href="">list2</a></li>
+      <li class="list-item"><a href="">list3</a></li>
+      <li class="list-item"><a href="">list4</a></li>
+      <li class="list-item"><a href="">list5</a></li>
+      <li class="list-item"><a href="">list6</a></li>
+      <li class="list-item"><a href="">list7</a></li>
+      <li class="list-item"><a href="">list8</a></li>
+      <li class="list-item"><a href="">list9</a></li>
+      <li class="list-item"><a href="">list10</a></li>
+    </ul>
+  </div>
+  <script src="" async defer></script>
+</body>
+
+</html>

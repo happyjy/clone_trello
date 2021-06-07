@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    .outer {
+      width: 80px;
+    }
+
+    .outer>* {
+      padding: 5px;
+      margin-bottom: 5px;
+    }
+
+    /* 선택1 */
+    .outer :first-child {
+      color: blue;
+    }
+
+    /* 선택2 */
+    .outer> :first-child {
+      background-color: red;
+    }
+
+    /* 선택4 */
+    .outer>div:nth-child(2n) {
+      border: 5px black solid;
+    }
+
+    /* 선택5 */
+    .outer>div:nth-child(2n+1) {
+      border: 5px yellow solid;
+    }
+  </style>
+
+  <div class="outer">
+    <div>1</div> <!-- 선택1, 선택2, 선택5 -->
+    <div>2</div> <!-- 선택4 -->
+    <div>3</div> <!-- 선택5 -->
+    <div>4
+      <!-- 선택4 -->
+      <p>4-1</p> <!-- 선택1 -->
+      <div>4-1</div>
+      <div>4-1</div>
+    </div>
+  </div>
+</body>
+
+</html>
