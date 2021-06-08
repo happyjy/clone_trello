@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.grid</title>
+  <link rel="stylesheet" href="./common.css">
+</head>
+
+<body>
+  <style>
+    div {
+      border-radius: 7px;
+    }
+
+    .container .item {
+      border: 4px dashed gray;
+    }
+
+    .outer-container1 .container {
+      border: 10px solid lightgray;
+      display: inline-grid;
+      width: 300px;
+      width: 300px;
+    }
+
+    .outer-container2 .container {
+      border: 10px solid lightgray;
+      display: grid;
+      width: 300px;
+      width: 300px;
+    }
+  </style>
+  <h1>outer-container1</h1>
+  <div>display: inline-grid;</div>
+  <div class="outer-container1">
+    <div class="container">
+      <div class="item item1">1</div>
+      <div class="item item2">2</div>
+      <div class="item item3">3</div>
+      <div class="item item4">4</div>
+      <div class="item item5">5</div>
+    </div>
+    <div class="container">
+      <div class="item item1">1</div>
+      <div class="item item2">2</div>
+      <div class="item item3">3</div>
+      <div class="item item4">4</div>
+      <div class="item item5">5</div>
+    </div>
+  </div>
+
+  <h1>outer-container2</h1>
+  <div>display: grid;</div>
+  <div class="outer-container2">
+    <div class="container">
+      <div class="item item1">1</div>
+      <div class="item item2">2</div>
+      <div class="item item3">3</div>
+      <div class="item item4">4</div>
+      <div class="item item5">5</div>
+    </div>
+    <div class="container">
+      <div class="item item1">1</div>
+      <div class="item item2">2</div>
+      <div class="item item3">3</div>
+      <div class="item item4">4</div>
+      <div class="item item5">5</div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>6.grid function(repeat, minmax, fit-content)</title>
+  <link rel="stylesheet" href="./common.css">
+
+</head>
+
+<body>
+  <style>
+    .container {
+      width: 300px;
+      height: 300px;
+      display: grid;
+      border: 3px solid gray;
+      border-radius: 10px;
+      /* margin: 0 auto; */
+
+      grid-template-rows: repeat(3, 1fr);
+      /* grid-template-columns: repeat(3, 1fr); */
+
+      /* point1: minmax */
+      grid-template-columns: minmax(100px, 1fr) minmax(200px, 1fr);
+
+      /* 아래 코드는 같은 결과입니다. */
+      /* 
+      grid-template-columns: minmax(100px, 1fr) minmax(100px, 1fr);
+      grid-template-columns: repeat(2, minmax(100px, 1fr)) 
+      */
+
+    }
+
+    .item {
+      border: 2px dashed orange;
+      border-radius: 7px;
+      padding: 3px
+    }
+  </style>
+
+
+  <h1>minmax 함수</h1>
+
+  <ul>
+    <li>가로 200px</li>
+    <li>grid-template-columns: 100px 200px 적용</li>
+    <li>container 밖으로 item영역이 나옴</li>
+  </ul>
+
+  <div class="container" style="width: 200px;">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
+
+  <ul>
+    <li>가로 300px</li>
+    <li>grid-template-columns: 100px 200px 적용</li>
+  </ul>
+
+  <div class="container" style="">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
+
+
+  <ul>
+    <li>가로 500px</li>
+    <li>grid-template-columns: 1fr 1fr 적용</li>
+  </ul>
+  <div class="container" style="width: 500px; ">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
+
+
+  <hr>
+
+  <h1>fit-content</h1>
+
+  <ul>
+    <li>fit-content() 함수는 행/열(Track)의 크기를 그리드 아이템(Item)이 포함하는 내용(Contents) 크기에 맞춥니다.</li>
+    <li>‘내용의 최대 크기’를 인수로 사용합니다.</li>
+    <li>minmax(auto, max-content)와 유사합니다.</li>
+  </ul>
+  <div class="container" style="
+    width: 400px;
+    grid-template-columns: fit-content(100px) fit-content(100%);">
+    <div class="item">She had come to the conclusion that you could tell a lot about a person by their ears. </div>
+    <div class="item">The way
+      they stuck out and the size of the earlobes could give you wonderful insights into the person. </div>
+    <div class="item">Of course, she
+      couldn't scientifically prove any of this,</div>
+    <div class="item" style="grid-column: fit-content(100%);">but that didn't matter to her. Before anything else, she
+      would size up
+      the ears of the person she was talking to.</div>
+  </div>
+</body>
+
+</html>

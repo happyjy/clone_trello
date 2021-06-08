@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3.grid-template-areas, row-gap, column-gap</title>
+  <link rel="stylesheet" href="./common.css">
+</head>
+
+<body>
+  <style>
+    body {
+      padding: 30px;
+    }
+
+    #codeContainer {
+      border: 4px gray solid;
+      width: fit-content;
+      border-radius: 10px;
+      margin: 0 40px 20px;
+      padding: 10px;
+    }
+
+    #codeContainer::before {
+      content: '<code>';
+      color: red;
+      display: block;
+    }
+
+    .container {
+      --column-gap: 30px;
+      width: calc((100px*3) + (var(--column-gap) * 2));
+      /* width: 100%; */
+      /* margin: 0 auto; */
+
+
+      border: 3px solid gray;
+      border-radius: 10px;
+
+      display: grid;
+      /* 
+        # POINT1 - grid-template-rows, grid-template-columns, grid-template-areas
+       */
+      /* grid-template-rows: 80px 350px 130px;
+      grid-template-columns: repeat(3, 100px); */
+      /* 
+        grid-template-areas:
+          "header header header" 
+          ". main aside"  
+          "footer footer ."; 
+       */
+      /* 
+        # POINT3 - grid-template
+       */
+      grid-template:
+        "header header header"80px ". main aside"350px "footer footer ."130px / 100px 100px 100px;
+
+      /* 
+        # POINT2 - row-gap, column-gap
+       */
+      row-gap: 10px;
+      column-gap: var(--column-gap);
+      /* column-gap: 30px; */
+      /* gap: 40px; */
+      /* gap: 10px 30px; */
+    }
+
+    .header {
+      grid-area: header;
+    }
+
+    .main {
+      grid-area: main;
+    }
+
+    .aside {
+      grid-area: aside;
+    }
+
+    .footer {
+      grid-area: footer;
+    }
+
+    .item {
+      border: 3px solid orange;
+      border-radius: 7px;
+      padding: 10px;
+    }
+  </style>
+
+  <h1>grid-template-areas, grid-area</h1>
+  <ul>
+    <li>grid-template-areas (container 속성)
+      <br>: 영역(Area) 이름을 참조해 템플릿 생성
+      <br>: "."을 이용해서 빈셀을 만들어 낼 수 있다.
+    </li>
+    <li>grid-area (item 속성)
+      <br>
+      : 영역(Area) 이름을 설정하거나, grid-row와 grid-column의 단축 속성
+    </li>
+  </ul>
+
+  <h1>row-gap, column-gap</h1>
+  <ul>
+    <li>row-gap: (grid-row-gap) 행과 행 사이의 간격(Line)을 정의</li>
+    <li>column-gap: (grid-column-gap) 열과 열 사이의 간격(Line)을 정의</li>
+    <li>gap: (grid-gap) xxx-gap의 단축 속성</li>
+  </ul>
+
+  <h1>grid-template의 단축 속성 활용방법 2가지</h1>
+  <h2>1. grid-template는 2개로 나눠서 설정할 수 있는 단축 속성 입니다.</h2>
+  <ul>
+    <li>grid-template: [grid-template-rows] / [grid-template-columns];</li>
+    <li> grid-template: [grid-template-areas];</li>
+  </ul>
+
+  <!-- <div id="codeContainer" style="width:800px;"> -->
+  <code>
+.container {
+  grid-template: [grid-template-rows] / [grid-template-columns];
+  grid-template: [grid-template-areas];
+}
+  </code>
+
+  <h2>2. grid-template는 다음 세개의 속성을 한번에 설정할 수 있는 단축 속성입니다.</h2>
+  <ul>
+    <li>grid-template는 다음 세개의 속성의 단축 속성입니다. <br>
+      (grid-template-rows, grid-template-columns, grid-template-areas)</li>
+    <li>code1, code2는 같은 결과물을 냅니다.</li>
+  </ul>
+  <code>
+    # code1
+grid-template-rows: 80px 350px 130px;
+grid-template-columns: repeat(3, 100px); 
+grid-template-areas:
+  " header header header"   
+  ". main aside"  
+  "footer footer .";
+  
+  # code2
+grid-template:
+  "header header header" 80px 
+  ". main aside" 350px 
+  "footer footer ." 130px 
+  / 100px 100px 100px;
+  </code>
+
+  <div class="container">
+    <div class="header item">header</div>
+    <div class="main item">main</div>
+    <div class="aside item">aside</div>
+    <div class="footer item">footer</div>
+  </div>
+</body>
+
+</html>

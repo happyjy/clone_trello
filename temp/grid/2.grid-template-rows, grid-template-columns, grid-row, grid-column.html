@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.grid-template-rows, grid-template-columns, grid-row, grid-column</title>
+  <link rel="stylesheet" href="./common.css">
+</head>
+
+<body>
+  <style>
+    .red {
+      color: red;
+      font-weight: bold;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .u {
+      text-decoration: underline;
+    }
+
+    div {
+      border-radius: 7px;
+    }
+
+    .container {
+      border: 7px solid gray;
+    }
+
+    .container .item {
+      border: 4px dashed orange;
+      padding: 10px;
+    }
+
+    /* 
+      # POINT 1
+        * repeat
+        * grid-template-rows
+        * grid-template-columns
+    */
+    .container1 {
+      display: grid;
+      grid-template-rows: repeat(4, 100px);
+      /* grid-template-rows: 100px 100px; */
+      /* grid-template-columns: repeat(3, 1fr); */
+      grid-template-columns: 1fr [center-start] 1fr [center-end] 1fr;
+    }
+
+    /* 
+      # POINT 2
+        * grid-row: grid-row-xxx의 단축 속성(행 시작/끝 위치)
+        * grid-column: grid-column-xxx의 단축 속성(열 시작/끝 위치)
+        * value 값: grid line 시작 숫자 / grid line 끝 숫자
+    */
+    .container1 .item:nth-child(1) {
+      /* grid-row: 1/3; */
+      grid-row-start: 1;
+      grid-row-end: 3;
+      grid-column: 1/3;
+    }
+
+    .container1 .item:nth-child(2) {
+      grid-row: 1/3;
+      /* grid-column: 1/3; */
+    }
+
+    .container1 .item:nth-child(5) {
+      grid-column: -1/-4;
+    }
+
+
+    /* 
+        # POINT 3
+          * grid-template-rows, grid-template-columns의 선이름 작성
+          * eg) grid-template-columns: 1fr [center-start] 1fr [center-end] 1fr;
+    */
+    .container2 {
+      display: grid;
+      grid-template-rows: repeat(4, 100px);
+      grid-template-columns: 1fr [center-start] 1fr [center-end] 1fr;
+    }
+
+    .container2 .item:nth-child(1) {
+      grid-column: center-start / center-end;
+    }
+  </style>
+
+  <h1>display: grid;</h1>
+  <ul>
+    <li>repeat 함수: 반복 설정을 줄일 수 있다.</li>
+
+    <code>
+  grid-template-rows: 100px 100px 100px;
+  grid-template-rows: repeat(3, 100px);
+  grid-template-rows: repeat(3, 1fr 2fr);
+  grid-template-rows: repeat(3, 10px 20px);
+</code>
+
+  </ul>
+
+  <h1>grid-template-rows</h1>
+  <ul>
+    <li>grid의 높이 길이 결정</li>
+    <li>grid-template-columns도 사용방법은 같다.</li>
+  </ul>
+
+
+  <code>
+.container {
+  display: grid;
+  grid-template-rows: 1행크기 2행크기 ...;
+  grid-template-rows: [선이름] 1행크기 [선이름] 2행크기 [선이름] ...;
+}
+</code>
+
+
+  <code>
+  /* 각 행의 크기를 정의합니다. */
+  .container {
+    grid-template-rows: 100px 200px;
+  }
+  /* 동시에 각 라인의 이름도 정의할 수 있습니다. */
+  .container {
+    grid-template-rows: [first] 100px [second] 200px [third];
+  }
+  /* 라인에 중복된 이름을 지정할 수 있습니다. */
+  .container {
+    grid-template-rows: [row1-start] 100px [row1-end row2-start] 200px [row2-end];
+  }}
+</code>
+
+
+  <h1>grid-template-columns</h1>
+  <ul>
+    <li>grid의 너비 길이 결정</li>
+  </ul>
+
+
+  <h1> grid-row, grid-column </h1>
+  <ul>
+    <li>grid-row: grid-row-xxx의 단축 속성(행 시작/끝 위치)</li>
+    <li>grid-column: grid-column-xxx의 단축 속성(열 시작/끝 위치)</li>
+    <li>value 값: grid line 시작 숫자 / grid line 끝 숫자</li>
+  </ul>
+  <h2>
+    grid-row-start
+    <br>grid-row-end
+    <br>grid-column-start
+    <br>grid-column-end
+  </h2>
+  <ul>
+    <li>grid-row-start: 행 시작 위치</li>
+    <li>grid-row-end: 행 끝 위치</li>
+  </ul>
+  <ul>
+    <li>grid-column-start: 열 시작 위치</li>
+    <li>grid-column-end: 열 끝 위치</li>
+  </ul>
+
+  <h3>주목할만한 사항1 - start 부분에 span 사용시 start 지점 계산 법</h3>
+  <ul>
+    <li><u class="red">아래와 같이 start가 span으로 시작하면 end의 지점 마이너스 얼만큼 span 할건지 값을 뺀값이 start 지점이다.</u></li>
+    <li>grid-row: span 3 / 4</li>
+    <li> = grid-row: 1 / 4</li>
+  </ul>
+  <h4>예시코드</h4>
+
+  <code>
+grid-row: 1/3; 
+grid-row-start: 1;
+grid-row-end: 3;
+</code>
+
+
+
+  <h3>주목할만한 사항2 - grid-template-areas 사용방법2가지</h3>
+  <ul>
+    <li>1. grid-row-start, grid-column-start, grid-row-end 그리고 grid-column-end의 단축 속성</li>
+    <li>2. grid-template-areas가 참조할 영역(Area) 이름을 설정할 수도 있다.</li>
+    <li>영역 이름을 설정할 경우 grid-row와 grid-column 개념은 무시</li>
+  </ul>
+  <h4>예시코드</h4>
+
+  <code>
+  .item {
+    grid-row: 2 / 3;
+    grid-column: span 2 / -1;
+  }
+  .item {
+    /* '시작 / 시작 / 끝 / 끝'임에 주의 */
+    grid-area: 2 / span 2 / 3 / -1;
+  }
+</code>
+
+
+  <div class="container container1">
+    <div class="item item1">1</div>
+    <div class="item item2">2</div>
+    <div class="item item3">3</div>
+    <div class="item item4">4</div>
+    <div class="item item5">5</div>
+  </div>
+
+
+  <hr>
+
+  <h1>grid-template-rows, grid-template-columns에 선이름 지정 후 사용</h1>
+  아래 코드 적용 결과
+
+  <code>
+.container2 {
+  display: grid;
+  grid-template-rows: repeat(4, 100px);
+  grid-template-columns: 1fr [center-start] 1fr [center-end] 1fr;
+}
+
+.container2 .item:nth-child(1) {
+  grid-column: center-start / center-end;
+}
+</code>
+
+  <div class="container container2">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+  </div>
+
+</body>
+
+</html>
